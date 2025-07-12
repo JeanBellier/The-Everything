@@ -81,19 +81,17 @@
   <header>
     <h1>The Everything</h1>
     <nav>
-      <a href="#top">Accueil</a>
+      <a href="#">Accueil</a>
       <a href="#produits">Boutique</a>
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <div id="top"></div>
-
-  <section class="hero">
+  <section class="hero" id="top">
     <h1>Trouvez tout ce qu’il vous faut</h1>
     <p>Des gadgets uniques et pratiques, livrés chez vous.</p>
-    <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior:'smooth'})">Voir les gadgets</button>
+    <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'});">Voir les gadgets</button>
   </section>
 
   <section class="products" id="produits">
@@ -104,11 +102,9 @@
     </div>
 
     <div class="product">
-      <a href="ventilateur.html" style="text-decoration: none; color: inherit;">
-        <img src="https://i.postimg.cc/cLrrcWzw/Screenshot-2025-07-12-at-13-24-06-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant" />
-        <h3>Mini Ventilateur Humidifiant 3 Vitesses</h3>
-        <p>9,99 €</p>
-      </a>
+      <img src="https://i.postimg.cc/cLrrcWzw/Screenshot-2025-07-12-at-13-24-06-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant" />
+      <h3><a href="ventilateur.html" style="text-decoration: none; color: inherit;">Mini Ventilateur Humidifiant 3 Vitesses</a></h3>
+      <p>9,99 €</p>
     </div>
 
     <div class="product">
@@ -127,16 +123,16 @@
   <section id="about" style="padding: 2rem; text-align:center;">
     <h2>À propos</h2>
     <p>
-      Bienvenue sur "The Everything", votre boutique de confiance spécialisée dans les gadgets du quotidien.<br>
-      Nous nous engageons à fournir des produits de qualité, testés et sélectionnés avec soin pour répondre à vos besoins.<br>
-      Notre équipe vous accompagne avec un service client rapide, réactif et bienveillant. N'hésitez pas à nous contacter !<br>
-      Faites-nous confiance pour vos achats en toute sécurité.
+      Chez <strong>The Everything</strong>, nous croyons en la qualité, la fiabilité et la satisfaction client.  
+      Nous sélectionnons avec soin nos produits pour vous garantir des gadgets utiles, modernes et accessibles.  
+      Notre service client est réactif, humain et toujours à l’écoute pour répondre à vos besoins.  
+      Faites confiance à une enseigne sérieuse qui place l’expérience client au cœur de ses priorités.
     </p>
   </section>
 
   <section id="contact" style="padding: 2rem; text-align:center;">
     <h2>Contact</h2>
-    <p>Pour toute question : <strong>jean.bellier28@gmail.com</strong></p>
+    <p>Pour toute question : <a href="mailto:jean.bellier28@gmail.com">jean.bellier28@gmail.com</a></p>
   </section>
 
   <footer>
