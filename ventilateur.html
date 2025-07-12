@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mini Ventilateur Humidifiant 3 Vitesses - The Everything</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -36,11 +36,33 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       text-align: center;
     }
-    main img {
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
+    .carousel {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto 2rem;
+    }
+    .carousel img {
+      width: 100%;
       border-radius: 12px;
+    }
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      background-color: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0 10px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      user-select: none;
+      border-radius: 4px;
+    }
+    .carousel .prev {
+      left: 5px;
+    }
+    .carousel .next {
+      right: 5px;
     }
     h1 {
       margin-top: 1rem;
@@ -81,7 +103,11 @@
   </header>
 
   <main>
-    <img src="https://i.postimg.cc/cLrrcWzw/Screenshot-2025-07-12-at-13-24-06-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant" />
+    <div class="carousel">
+      <button class="prev" aria-label="Image précédente">&#10094;</button>
+      <img id="carousel-image" src="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant" />
+      <button class="next" aria-label="Image suivante">&#10095;</button>
+    </div>
     <h1>Mini Ventilateur Humidifiant 3 Vitesses</h1>
     <p class="price">9,99 €</p>
     <p class="description">
@@ -89,7 +115,34 @@
       Il dispose de 3 vitesses réglables et d'une fonction humidification pour un confort optimal.
       Compact, portable et facile à utiliser, idéal pour le bureau ou la maison.
     </p>
-    <a href="index.html" class="btn-back"> Retour à la boutique</a>
+    <a href="index.html" class="btn-back">Retour à la boutique</a>
   </main>
+
+  <script>
+    // Tableau des images à faire défiler
+    const images = [
+      "https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png",
+      "https://i.postimg.cc/DZMj9bsf/Screenshot-2025-07-12-at-13-25-01-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png"
+    ];
+
+    let currentIndex = 0;
+    const carouselImage = document.getElementById('carousel-image');
+    const prevButton = document.querySelector('.carousel .prev');
+    const nextButton = document.querySelector('.carousel .next');
+
+    function showImage(index) {
+      carouselImage.src = images[index];
+    }
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    });
+  </script>
 </body>
 </html>
