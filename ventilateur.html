@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Everything</title>
+  <title>Mini Ventilateur Humidifiant 3 Vitesses - The Everything</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
       background-color: #f9f9f9;
       color: #333;
+      padding: 2rem;
     }
     header {
       background-color: #1c1c1c;
@@ -29,51 +27,77 @@
       margin-left: 1.5rem;
       font-weight: 500;
     }
-    .hero {
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       text-align: center;
-      padding: 4rem 2rem;
-      background-color: #e0f7f1;
     }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .carousel {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto 2rem;
     }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+    .carousel img {
+      width: 100%;
+      border-radius: 12px;
     }
-    .btn-primary {
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      background-color: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0 10px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      user-select: none;
+      border-radius: 4px;
+    }
+    .carousel .prev {
+      left: 5px;
+    }
+    .carousel .next {
+      right: 5px;
+    }
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+    p.price {
+      font-size: 1.5rem;
+      color: #00c897;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+    p.description {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-top: 1rem;
+    }
+    a.btn-back {
+      display: inline-block;
+      margin-top: 2rem;
       background-color: #00c897;
       color: white;
       padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    button.pay-button {
+      margin-top: 1.5rem;
+      background-color: #00c897;
+      color: white;
+      padding: 0.8rem 2rem;
       border: none;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-    }
-    .product {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1rem;
-      text-align: center;
-    }
-    .product img {
-      width: 100%;
-      max-height: 200px;
-      object-fit: contain;
-    }
-    footer {
-      background: #1c1c1c;
-      color: white;
-      text-align: center;
-      padding: 2rem;
     }
   </style>
 </head>
@@ -81,66 +105,58 @@
   <header>
     <h1>The Everything</h1>
     <nav>
-      <a href="#top">Accueil</a>
-      <a href="#produits">Boutique</a>
+      <a href="index.html">Accueil</a>
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <div id="top"></div>
-
-  <section class="hero">
-    <h1>Trouvez tout ce qu’il vous faut</h1>
-    <p>Des gadgets uniques et pratiques, livrés chez vous.</p>
-    <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior:'smooth'})">Voir les gadgets</button>
-  </section>
-
-  <section class="products" id="produits">
-    <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Mini+Ventilateur" alt="Mini Ventilateur" />
-      <h3>Mini Ventilateur USB</h3>
-      <p>12,99 €</p>
+  <main>
+    <div class="carousel">
+      <button class="prev">&#10094;</button>
+      <img id="carousel-image" src="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant" />
+      <button class="next">&#10095;</button>
     </div>
-
-    <div class="product">
-      <a href="ventilateur.html" style="text-decoration: none; color: inherit;">
-        <img src="https://i.postimg.cc/cLrrcWzw/Screenshot-2025-07-12-at-13-24-06-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant" />
-        <h3>Mini Ventilateur Humidifiant 3 Vitesses</h3>
-        <p>9,99 €</p>
-      </a>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Support+T%C3%A9l%C3%A9phone" alt="Support Téléphone" />
-      <h3>Support Téléphone</h3>
-      <p>9,99 €</p>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Lampe+LED" alt="Lampe LED" />
-      <h3>Lampe LED de Bureau</h3>
-      <p>14,99 €</p>
-    </div>
-  </section>
-
-  <section id="about" style="padding: 2rem; text-align:center;">
-    <h2>À propos</h2>
-    <p>
-      Bienvenue sur "The Everything", votre boutique de confiance spécialisée dans les gadgets du quotidien.<br>
-      Nous nous engageons à fournir des produits de qualité, testés et sélectionnés avec soin pour répondre à vos besoins.<br>
-      Notre équipe vous accompagne avec un service client rapide, réactif et bienveillant. N'hésitez pas à nous contacter !<br>
-      Faites-nous confiance pour vos achats en toute sécurité.
+    <h1>Mini Ventilateur Humidifiant 3 Vitesses</h1>
+    <p class="price">9,99 €</p>
+    <p class="description">
+      Ce mini ventilateur humidifiant est parfait pour vous rafraichir pendant les journées chaudes.
+      Il dispose de 3 vitesses réglables et d'une fonction humidification pour un confort optimal.
+      Compact, portable et facile à utiliser, idéal pour le bureau ou la maison.
     </p>
-  </section>
+    <button class="pay-button" onclick="alert('Paiement en cours de mise en place')">Payer maintenant</button>
+    <br />
+    <a href="index.html" class="btn-back">Retour à la boutique</a>
+  </main>
 
-  <section id="contact" style="padding: 2rem; text-align:center;">
-    <h2>Contact</h2>
-    <p>Pour toute question : <strong>jean.bellier28@gmail.com</strong></p>
-  </section>
+  <script>
+    (function(){
+      const images = [
+        "https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png",
+        "https://i.postimg.cc/DZMj9bsf/Screenshot-2025-07-12-at-13-25-01-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png"
+      ];
+      let index = 0;
+      const imgElement = document.getElementById('carousel-image');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
 
-  <footer>
-    <p>&copy; 2025 The Everything - Tous droits réservés</p>
-  </footer>
+      function showImage(i) {
+        index = i;
+        if(index < 0) index = images.length -1;
+        if(index >= images.length) index = 0;
+        imgElement.src = images[index];
+      }
+
+      prevBtn.addEventListener('click', () => {
+        showImage(index -1);
+      });
+      nextBtn.addEventListener('click', () => {
+        showImage(index +1);
+      });
+
+      // initial display
+      showImage(index);
+    })();
+  </script>
 </body>
 </html>
