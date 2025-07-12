@@ -6,9 +6,6 @@
   <title>The Everything</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -28,6 +25,7 @@
       text-decoration: none;
       margin-left: 1.5rem;
       font-weight: 500;
+      cursor: pointer;
     }
     .hero {
       text-align: center;
@@ -81,14 +79,13 @@
   <header>
     <h1>The Everything</h1>
     <nav>
-      <a href="#">Accueil</a>
-      <a href="#produits">Boutique</a>
+      <a href="index.html">Accueil</a>
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero" id="top">
+  <section class="hero">
     <h1>Trouvez tout ce qu’il vous faut</h1>
     <p>Des gadgets uniques et pratiques, livrés chez vous.</p>
     <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'});">Voir les gadgets</button>
@@ -122,17 +119,13 @@
 
   <section id="about" style="padding: 2rem; text-align:center;">
     <h2>À propos</h2>
-    <p>
-      Chez <strong>The Everything</strong>, nous croyons en la qualité, la fiabilité et la satisfaction client.  
-      Nous sélectionnons avec soin nos produits pour vous garantir des gadgets utiles, modernes et accessibles.  
-      Notre service client est réactif, humain et toujours à l’écoute pour répondre à vos besoins.  
-      Faites confiance à une enseigne sérieuse qui place l’expérience client au cœur de ses priorités.
-    </p>
+    <p>"The Everything" est votre boutique de gadgets pour améliorer votre quotidien avec style et efficacité.
+    Notre enseigne est sérieuse, avec un support client disponible et réactif pour vous aider à tout moment.</p>
   </section>
 
   <section id="contact" style="padding: 2rem; text-align:center;">
     <h2>Contact</h2>
-    <p>Pour toute question : <a href="mailto:jean.bellier28@gmail.com">jean.bellier28@gmail.com</a></p>
+    <p>Pour toute question : <a href="mailto:jean.bellier28@gmail.com" style="color: #00c897;">jean.bellier28@gmail.com</a></p>
   </section>
 
   <footer>
