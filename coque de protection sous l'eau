@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Coque Étanche Universelle IP68</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .carousel {
+      position: relative;
+      width: 300px;
+      margin: auto;
+    }
+    .carousel img {
+      width: 100%;
+      display: none;
+    }
+    .carousel img.active {
+      display: block;
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      color: black;
+      cursor: pointer;
+      background: white;
+      border-radius: 50%;
+      padding: 5px;
+    }
+    .arrow.left { left: -40px; }
+    .arrow.right { right: -40px; }
+  </style>
+</head>
+<body>
+
+  <h1>Coque Étanche Universelle IP68</h1>
+
+  <div class="carousel">
+    <span class="arrow left" onclick="prevImage()">&#10094;</span>
+    <img src="https://i.postimg.cc/NjwkwWMz/Screenshot-2025-07-13-at-13-03-21-Coque-de-t-l-phone-universelle-tanche-IP68-sac-pour-i-Phone-16-15.png" class="active" alt="Image 1">
+    <img src="https://i.postimg.cc/NjYmnmCh/Screenshot-2025-07-13-at-13-03-59-Coque-de-t-l-phone-universelle-tanche-IP68-sac-pour-i-Phone-16-15.png" alt="Image 2">
+    <img src="https://i.postimg.cc/mkC1XgQ2/Screenshot-2025-07-13-at-13-04-57-Coque-de-t-l-phone-universelle-tanche-IP68-sac-pour-i-Phone-16-15.png" alt="Image 3">
+    <img src="https://i.postimg.cc/FKzdtZj6/Screenshot-2025-07-13-at-13-05-06-Coque-de-t-l-phone-universelle-tanche-IP68-sac-pour-i-Phone-16-15.png" alt="Image 4">
+    <span class="arrow right" onclick="nextImage()">&#10095;</span>
+  </div>
+
+  <p>
+    Cette coque universelle étanche IP68 est parfaite pour garder votre téléphone protégé sous l’eau. Adaptée à presque tous les modèles de smartphone (iPhone 11 à 16, Samsung, Xiaomi...), elle permet même d’utiliser l’écran tactile à travers la housse.
+  </p>
+
+  <ul>
+    <li>💧 Certifiée IP68 – protection maximale contre l’eau</li>
+    <li>📸 Fenêtre transparente pour prendre des photos sous l’eau</li>
+    <li>📱 Écran tactile utilisable à travers la housse</li>
+    <li>✅ Compatible avec presque tous les smartphones</li>
+    <li>🏖️ Idéale pour la piscine, plage, kayak ou neige</li>
+  </ul>
+
+  <p><strong>Prix : 1,79€</strong></p>
+  <button>Ajouter au panier</button>
+
+  <script>
+    let current = 0;
+    const images = document.querySelectorAll(".carousel img");
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
+    }
+
+    function nextImage() {
+      current = (current + 1) % images.length;
+      showImage(current);
+    }
+
+    function prevImage() {
+      current = (current - 1 + images.length) % images.length;
+      showImage(current);
+    }
+  </script>
+
+</body>
+</html>
