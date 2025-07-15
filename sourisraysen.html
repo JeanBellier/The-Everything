@@ -2,157 +2,177 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Souris Gamer Razer DeathAdder Essential - The Everything</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
       background-color: #f9f9f9;
-      margin: 0;
       color: #333;
-      padding: 1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 2rem;
     }
     header {
       background-color: #1c1c1c;
       color: white;
       padding: 1rem 2rem;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    h1 {
-      margin-bottom: 0.5rem;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
     }
     .carousel {
       position: relative;
-      max-width: 100%;
-      margin: 1rem auto;
+      max-width: 400px;
+      margin: 0 auto 2rem;
     }
     .carousel img {
       width: 100%;
-      height: auto;
-      display: none;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .carousel img.active {
-      display: block;
-    }
-    .arrow {
+    .carousel button {
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      color: #00c897;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-      padding: 0.2rem 0.6rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.3s ease;
-    }
-    .arrow:hover {
-      background: #00c897;
+      background-color: rgba(0,0,0,0.3);
+      border: none;
       color: white;
+      font-size: 2rem;
+      padding: 0 10px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      user-select: none;
+      border-radius: 4px;
     }
-    .arrow.left {
-      left: 0.5rem;
+    .carousel .prev {
+      left: 5px;
     }
-    .arrow.right {
-      right: 0.5rem;
+    .carousel .next {
+      right: 5px;
     }
-    .price {
-      font-size: 1.8rem;
-      color: #e60000;
-      margin: 1rem 0 0.5rem 0;
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+    p.price {
+      font-size: 1.5rem;
+      color: #00c897;
+      margin: 1rem 0;
       font-weight: bold;
     }
-    .old-price {
-      text-decoration: line-through;
-      color: #777;
-      font-size: 1rem;
-      margin-left: 0.5rem;
-      font-weight: normal;
+    p.description {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-top: 1rem;
     }
-    ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
+    ul.features {
+      text-align: left;
+      max-width: 500px;
+      margin: 1rem auto 0;
+      padding-left: 1.2rem;
     }
-    button.buy-button {
+    ul.features li {
+      margin-bottom: 0.5rem;
+    }
+    a.btn-back {
+      display: inline-block;
+      margin-top: 2rem;
       background-color: #00c897;
       color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
       border-radius: 8px;
-      cursor: pointer;
-      margin-top: 1.5rem;
-      transition: background-color 0.3s ease;
-    }
-    button.buy-button:hover {
-      background-color: #009c6a;
-    }
-    footer {
-      margin-top: 3rem;
-      padding: 1rem 0;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-    }
-    a.back-link {
-      display: inline-block;
-      margin-top: 1rem;
       text-decoration: none;
-      color: #00c897;
       font-weight: 600;
     }
-    a.back-link:hover {
-      text-decoration: underline;
+    button.pay-button {
+      margin-top: 1.5rem;
+      background-color: #00c897;
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Souris Gamer Razer DeathAdder Essential</h1>
+    <h1>The Everything</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="#about">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <div class="carousel">
-    <img src="https://i.postimg.cc/SsvRWThz/Screenshot-2025-07-15-at-21-09-28-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png" alt="Souris Razer Image 1" class="active" />
-    <img src="https://i.postimg.cc/gr907xrz/Screenshot-2025-07-15-at-21-09-14-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png" alt="Souris Razer Image 2" />
-    <img src="https://i.postimg.cc/1R8cbb42/Screenshot-2025-07-15-at-21-08-53-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png" alt="Souris Razer Image 3" />
-
-    <span class="arrow left" onclick="changeSlide(-1)">&#10094;</span>
-    <span class="arrow right" onclick="changeSlide(1)">&#10095;</span>
-  </div>
-
-  <p class="price">9,99 € <span class="old-price">24,99 €</span></p>
-
-  <ul>
-    <li>Capteur optique ultra-précis 6400 DPI</li>
-    <li>5 boutons programmables</li>
-    <li>Design ergonomique pour droitier</li>
-    <li>Plug & Play – aucune installation nécessaire</li>
-    <li>Livraison gratuite prévue entre le 20 et 24 juillet</li>
-  </ul>
-
-  <button class="buy-button">Acheter maintenant</button>
-
-  <a href="index.html" class="back-link">← Retour à l'accueil</a>
-
-  <footer>
-    <p>&copy; 2025 The Everything</p>
-  </footer>
+  <main>
+    <div class="carousel">
+      <button class="prev">&#10094;</button>
+      <img id="carousel-image" src="https://i.postimg.cc/SsvRWThz/Screenshot-2025-07-15-at-21-09-28-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png" alt="Souris Gamer Razer DeathAdder Essential" />
+      <button class="next">&#10095;</button>
+    </div>
+    <h1>Souris Gamer Razer DeathAdder Essential</h1>
+    <p class="price">9,99 € <span style="text-decoration: line-through; color: #777; font-weight: normal; font-size: 1rem; margin-left: 0.5rem;">24,99 €</span></p>
+    <p class="description">
+      Profitez d'une souris gamer ultra-précise avec capteur optique 6400 DPI et design ergonomique pour droitier.
+      Idéale pour les joueurs exigeants, avec 5 boutons programmables et plug & play.
+    </p>
+    <ul class="features">
+      <li>Capteur optique ultra-précis 6400 DPI</li>
+      <li>5 boutons programmables</li>
+      <li>Design ergonomique adapté aux droitiers</li>
+      <li>Plug & Play, aucune installation requise</li>
+      <li>Livraison gratuite prévue entre le 20 et 24 juillet</li>
+    </ul>
+    <button class="pay-button" onclick="alert('Paiement en cours de mise en place')">Payer maintenant</button>
+    <br />
+    <a href="index.html" class="btn-back">Retour à la boutique</a>
+  </main>
 
   <script>
-    let currentIndex = 0;
-    const images = document.querySelectorAll('.carousel img');
+    (function(){
+      const images = [
+        "https://i.postimg.cc/SsvRWThz/Screenshot-2025-07-15-at-21-09-28-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png",
+        "https://i.postimg.cc/gr907xrz/Screenshot-2025-07-15-at-21-09-14-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png",
+        "https://i.postimg.cc/1R8cbb42/Screenshot-2025-07-15-at-21-08-53-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png"
+      ];
+      let index = 0;
+      const imgElement = document.getElementById('carousel-image');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
 
-    function changeSlide(direction) {
-      images[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + direction + images.length) % images.length;
-      images[currentIndex].classList.add('active');
-    }
+      function showImage(i) {
+        index = i;
+        if(index < 0) index = images.length -1;
+        if(index >= images.length) index = 0;
+        imgElement.src = images[index];
+      }
+
+      prevBtn.addEventListener('click', () => {
+        showImage(index -1);
+      });
+      nextBtn.addEventListener('click', () => {
+        showImage(index +1);
+      });
+
+      // initial display
+      showImage(index);
+    })();
   </script>
 </body>
 </html>
