@@ -1,152 +1,111 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Everything</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>The Everything - Boutique</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      padding: 0;
     }
+
     header {
-      background-color: #1c1c1c;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
     }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-      cursor: pointer;
+      margin: 0 15px;
     }
-    .hero {
-      text-align: center;
-      padding: 4rem 2rem;
-      background-color: #e0f7f1;
+
+    main {
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
     }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-    .btn-primary {
-      background-color: #00c897;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-    }
+
     .product {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1rem;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
       text-align: center;
+      padding: 10px;
+      background-color: #f9f9f9;
     }
+
     .product img {
       width: 100%;
-      max-height: 200px;
-      object-fit: contain;
+      height: auto;
+      border-radius: 10px;
     }
-    .product h3 a {
-      text-decoration: none;
-      color: inherit;
+
+    .product h3 {
+      font-size: 1.1em;
+      margin: 10px 0 5px 0;
     }
+
+    .product .price {
+      color: #e60000;
+      font-size: 1.2em;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #777;
+      font-size: 0.9em;
+      margin-left: 5px;
+    }
+
     footer {
-      background: #1c1c1c;
-      color: white;
+      background-color: #333;
+      color: #fff;
       text-align: center;
-      padding: 2rem;
+      padding: 15px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>The Everything</h1>
     <nav>
       <a href="index.html">Accueil</a>
-      <a href="#about">À propos</a>
-      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Trouvez tout ce qu’il vous faut</h1>
-    <p>Des gadgets uniques et pratiques, livrés chez vous.</p>
-    <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'});">
-      Voir les gadgets
-    </button>
-  </section>
-
-  <section class="products" id="produits">
+  <main>
+    <!-- Produit déjà existant -->
     <div class="product">
-      <img
-        src="https://i.postimg.cc/cLrrcWzw/Screenshot-2025-07-12-at-13-24-06-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png"
-        alt="Mini Ventilateur Humidifiant"
-      />
-      <h3><a href="ventilateur.html">Mini Ventilateur Humidifiant 3 Vitesses</a></h3>
-      <p>9,99 €</p>
+      <a href="ventilateur.html">
+        <img src="https://i.postimg.cc/cLrrcWzw/Screenshot-2025-07-12-at-13-24-06-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant">
+        <h3>Mini Ventilateur Humidifiant 3 Vitesses</h3>
+        <p class="price">9,99€ <span class="old-price">19,99€</span></p>
+      </a>
     </div>
 
+    <!-- Nouveau produit : Souris Razer -->
     <div class="product">
-      <img
-        src="https://i.postimg.cc/NjwkwWMz/Screenshot-2025-07-13-at-13-03-21-Coque-de-t-l-phone-universelle-tanche-IP68-sac-pour-i-Phone-16-15.png"
-        alt="Coque étanche universelle IP68"
-      />
-      <h3><a href="coqueprotectionsousleau.html">Coque Étanche Universelle IP68</a></h3>
-      <p>3,99 €</p>
+      <a href="souris.html">
+        <img src="https://i.postimg.cc/SsvRWThz/Screenshot-2025-07-15-at-21-09-28-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png" alt="Souris Gamer Razer DeathAdder Essential">
+        <h3>Souris Gamer Razer DeathAdder Essential</h3>
+        <p class="price">9,99€ <span class="old-price">24,99€</span></p>
+      </a>
     </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Support+T%C3%A9l%C3%A9phone" alt="Support Téléphone" />
-      <h3>Support Téléphone</h3>
-      <p>9,99 €</p>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Lampe+LED" alt="Lampe LED" />
-      <h3>Lampe LED de Bureau</h3>
-      <p>14,99 €</p>
-    </div>
-  </section>
-
-  <section id="about" style="padding: 2rem; text-align:center;">
-    <h2>À propos</h2>
-    <p>
-      "The Everything" est votre boutique de gadgets pour améliorer votre quotidien avec style et
-      efficacité. Notre enseigne est sérieuse, avec un support client disponible et réactif pour vous aider à
-      tout moment.
-    </p>
-  </section>
-
-  <section id="contact" style="padding: 2rem; text-align:center;">
-    <h2>Contact</h2>
-    <p>
-      Pour toute question : <a href="mailto:jean.bellier28@gmail.com" style="color: #00c897;">jean.bellier28@gmail.com</a>
-    </p>
-  </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 The Everything - Tous droits réservés</p>
+    <p>&copy; 2025 The Everything</p>
   </footer>
+
 </body>
 </html>
