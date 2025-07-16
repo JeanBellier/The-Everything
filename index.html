@@ -11,6 +11,9 @@
       font-family: 'Inter', sans-serif;
       background-color: #f9f9f9;
       color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
       background-color: #1c1c1c;
@@ -76,6 +79,45 @@
       color: white;
       text-align: center;
       padding: 2rem;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #00c897;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    /* Cookie banner */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      z-index: 9999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    #cookie-banner button {
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #accept-cookies {
+      background: #00c897;
+      color: white;
+    }
+    #reject-cookies {
+      background: #555;
+      color: white;
     }
   </style>
 </head>
@@ -117,18 +159,15 @@
     </div>
 
     <div class="product">
-      <img
-        src="https://i.postimg.cc/SsvRWThz/Screenshot-2025-07-15-at-21-09-28-Razer-Souris-de-jeu-filaire-Death-Adder-Essential-capteur-optique-6.png"
-        alt="Souris Gamer Razer DeathAdder Essential"
-      />
-      <h3><a href="sourisraysen.html">Souris Gamer Razer DeathAdder Essential</a></h3>
-      <p>9,99 € <span style="text-decoration: line-through; color: gray; font-size: 0.9rem;">24,99 €</span></p>
+      <img src="https://via.placeholder.com/200x200.png?text=Produit+3" alt="Produit à venir" />
+      <h3>Produit à venir</h3>
+      <p>Bientôt disponible</p>
     </div>
 
     <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Support+T%C3%A9l%C3%A9phone" alt="Support Téléphone" />
-      <h3>Support Téléphone</h3>
-      <p>9,99 €</p>
+      <img src="https://via.placeholder.com/200x200.png?text=Produit+4" alt="Produit à venir" />
+      <h3>Produit à venir</h3>
+      <p>Bientôt disponible</p>
     </div>
   </section>
 
@@ -150,6 +189,41 @@
 
   <footer>
     <p>&copy; 2025 The Everything - Tous droits réservés</p>
+    <p>
+      <a href="mentions.html">Mentions légales</a> | 
+      <a href="cgv.html">CGV</a> | 
+      <a href="cookies.html">Politique de confidentialité</a>
+    </p>
   </footer>
+
+  <!-- Bannière Cookies -->
+  <div id="cookie-banner" style="display:none;">
+    <span>Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous ?</span>
+    <button id="accept-cookies">Accepter</button>
+    <button id="reject-cookies">Refuser</button>
+  </div>
+
+  <script>
+    (function(){
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('accept-cookies');
+      const rejectBtn = document.getElementById('reject-cookies');
+      const decision = localStorage.getItem('cookiesAccepted');
+
+      if (decision !== 'yes' && decision !== 'no') {
+        banner.style.display = 'flex';
+      }
+
+      acceptBtn.onclick = function() {
+        localStorage.setItem('cookiesAccepted', 'yes');
+        banner.style.display = 'none';
+      };
+
+      rejectBtn.onclick = function() {
+        localStorage.setItem('cookiesAccepted', 'no');
+        banner.style.display = 'none';
+      };
+    })();
+  </script>
 </body>
 </html>
