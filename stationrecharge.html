@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Station de Recharge 70W - The Everything</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -28,8 +28,7 @@
       margin-left: 1.5rem;
       font-weight: 500;
     }
-    /* Panier bouton dans header */
-    #btn-panier {
+    #cart-button {
       background: transparent;
       border: none;
       color: white;
@@ -37,7 +36,7 @@
       cursor: pointer;
       position: relative;
     }
-    #compteur-panier {
+    #cart-count {
       position: absolute;
       top: -8px;
       right: -8px;
@@ -114,7 +113,7 @@
       text-decoration: none;
       font-weight: 600;
     }
-    button.cart-button {
+    button#btn-ajout {
       margin-top: 1.5rem;
       background-color: #00c897;
       color: white;
@@ -124,28 +123,7 @@
       font-size: 1.1rem;
       cursor: pointer;
     }
-    /* Message ajout panier */
-    #message-ajout {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #00c897;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 10000;
-    }
-    #message-ajout.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    /* Fenêtre panier */
-    #fenetre-panier {
+    #cart {
       position: fixed;
       top: 60px;
       right: 20px;
@@ -160,7 +138,7 @@
       flex-direction: column;
       z-index: 10000;
     }
-    #fenetre-panier header {
+    #cart-header {
       font-weight: 700;
       font-size: 1.2rem;
       margin-bottom: 1rem;
@@ -168,7 +146,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    #fermer-panier {
+    #cart-close {
       background: transparent;
       border: none;
       font-size: 1.3rem;
@@ -176,46 +154,47 @@
       font-weight: 700;
       color: #555;
     }
-    #fermer-panier:hover {
+    #cart-close:hover {
       color: #00c897;
     }
-    #liste-panier {
+    #cart-items {
       flex-grow: 1;
       overflow-y: auto;
       border-top: 1px solid #ddd;
       border-bottom: 1px solid #ddd;
       padding: 0.5rem 0;
       margin-bottom: 1rem;
+      max-height: 250px;
     }
-    .item-panier {
+    .cart-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 0.7rem;
     }
-    .item-info {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      max-width: 220px;
-    }
-    .item-info img {
+    .cart-item img {
       width: 50px;
       height: 50px;
       object-fit: contain;
       border-radius: 6px;
       border: 1px solid #ccc;
+      margin-right: 0.8rem;
     }
-    .item-nom {
-      font-weight: 600;
+    .cart-item-details {
+      flex-grow: 1;
       font-size: 0.9rem;
-      word-wrap: break-word;
+      text-align: left;
     }
-    .item-quantite {
+    .cart-item-details strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .cart-item-qty {
       font-size: 0.9rem;
       color: #555;
     }
-    .btn-supprimer {
+    .cart-remove-btn {
       background: transparent;
       border: none;
       color: #cc3333;
@@ -223,19 +202,11 @@
       font-size: 1.1rem;
       cursor: pointer;
     }
-    #total-panier {
+    #cart-total {
       font-weight: 700;
       font-size: 1.1rem;
       text-align: right;
       margin-bottom: 0.5rem;
-    }
-    /* Scroll barre pour liste panier */
-    #liste-panier::-webkit-scrollbar {
-      width: 6px;
-    }
-    #liste-panier::-webkit-scrollbar-thumb {
-      background-color: #00c897;
-      border-radius: 3px;
     }
   </style>
 </head>
@@ -247,9 +218,8 @@
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="btn-panier" aria-label="Afficher le panier">
-      🛒
-      <span id="compteur-panier">0</span>
+    <button id="cart-button" aria-label="Afficher le panier">
+      🛒 <span id="cart-count">0</span>
     </button>
   </header>
 
@@ -265,27 +235,26 @@
       Station de recharge rapide 70W pour plusieurs appareils avec 4 ports USB et un chargeur sans fil 10W. 
       Compatible avec iPhone, iPad, tablettes, Kindle et autres appareils USB-C. Compacte, efficace et élégante, parfaite pour le bureau ou la maison.
     </p>
-    <button class="cart-button" id="btn-ajout">Ajouter au panier</button>
+    <button id="btn-ajout">Ajouter au panier</button>
     <br />
     <a href="index.html" class="btn-back">Retour à la boutique</a>
   </main>
 
-  <div id="message-ajout">L'article a été ajouté au panier</div>
-
-  <div id="fenetre-panier" role="dialog" aria-modal="true" aria-labelledby="titre-panier">
-    <header>
-      <span id="titre-panier">Panier</span>
-      <button id="fermer-panier" aria-label="Fermer le panier">&times;</button>
+  <!-- Fenêtre panier -->
+  <div id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-header">
+    <header id="cart-header">
+      Panier
+      <button id="cart-close" aria-label="Fermer le panier">&times;</button>
     </header>
-    <div id="liste-panier">
-      <!-- articles ajoutés -->
+    <div id="cart-items">
+      <!-- Produits ajoutés -->
     </div>
-    <div id="total-panier">Total : 0 €</div>
+    <div id="cart-total">Total: 0 €</div>
   </div>
 
   <script>
-    // Carousel
     (function(){
+      // Carousel
       const images = [
         "https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png",
         "https://i.postimg.cc/rw9pjFJM/Screenshot-2025-07-19-at-15-14-20-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png",
@@ -311,124 +280,98 @@
       });
 
       showImage(index);
-    })();
 
-    // Gestion panier
-    const btnAjout = document.getElementById('btn-ajout');
-    const messageAjout = document.getElementById('message-ajout');
-    const btnPanier = document.getElementById('btn-panier');
-    const compteurPanier = document.getElementById('compteur-panier');
-    const fenetrePanier = document.getElementById('fenetre-panier');
-    const fermerPanier = document.getElementById('fermer-panier');
-    const listePanier = document.getElementById('liste-panier');
-    const totalPanier = document.getElementById('total-panier');
+      // Gestion panier
+      const btnAjout = document.getElementById('btn-ajout');
+      const cartButton = document.getElementById('cart-button');
+      const cart = document.getElementById('cart');
+      const cartClose = document.getElementById('cart-close');
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotalElem = document.getElementById('cart-total');
+      const cartCountElem = document.getElementById('cart-count');
 
-    function afficherMessage() {
-      messageAjout.classList.add('visible');
-      setTimeout(() => {
-        messageAjout.classList.remove('visible');
-      }, 2000);
-    }
+      let cartData = JSON.parse(localStorage.getItem('cartData')) || {};
 
-    function chargerPanier() {
-      return JSON.parse(localStorage.getItem('panier')) || [];
-    }
-
-    function sauvegarderPanier(panier) {
-      localStorage.setItem('panier', JSON.stringify(panier));
-    }
-
-    function calculerTotal(panier) {
-      return panier.reduce((acc, item) => acc + item.prix * item.quantite, 0);
-    }
-
-    function mettreAJourCompteur() {
-      const panier = chargerPanier();
-      const totalQty = panier.reduce((acc, item) => acc + item.quantite, 0);
-      if(totalQty > 0) {
-        compteurPanier.style.display = 'inline-block';
-        compteurPanier.textContent = totalQty;
-      } else {
-        compteurPanier.style.display = 'none';
-      }
-    }
-
-    function afficherPanier() {
-      const panier = chargerPanier();
-      listePanier.innerHTML = '';
-
-      if(panier.length === 0) {
-        listePanier.innerHTML = '<p>Votre panier est vide.</p>';
-        totalPanier.textContent = 'Total : 0 €';
-        return;
+      function updateCartCount() {
+        const count = Object.values(cartData).reduce((acc, item) => acc + item.qty, 0);
+        if (count > 0) {
+          cartCountElem.style.display = 'inline';
+          cartCountElem.textContent = count;
+        } else {
+          cartCountElem.style.display = 'none';
+        }
       }
 
-      panier.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'item-panier';
+      function saveCart() {
+        localStorage.setItem('cartData', JSON.stringify(cartData));
+        updateCartCount();
+      }
 
-        div.innerHTML = `
-          <div class="item-info">
-            <img src="${item.image}" alt="${item.nom}">
-            <div>
-              <div class="item-nom">${item.nom}</div>
-              <div class="item-quantite">Quantité : ${item.quantite}</div>
+      function renderCart() {
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        for (const id in cartData) {
+          const item = cartData[id];
+          total += item.price * item.qty;
+
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'cart-item';
+          itemDiv.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" />
+            <div class="cart-item-details">
+              <strong>${item.name}</strong>
+              <span class="cart-item-qty">Quantité: ${item.qty}</span>
             </div>
-          </div>
-          <button class="btn-supprimer" aria-label="Supprimer ${item.nom}">×</button>
-        `;
+            <button class="cart-remove-btn" data-id="${id}" aria-label="Supprimer ${item.name}">&times;</button>
+          `;
+          cartItemsContainer.appendChild(itemDiv);
+        }
+        cartTotalElem.textContent = 'Total: ' + total.toFixed(2).replace('.', ',') + ' €';
 
-        // Suppression article au clic sur bouton
-        div.querySelector('.btn-supprimer').addEventListener('click', () => {
-          let panierActuel = chargerPanier();
-          panierActuel = panierActuel.filter(p => p.nom !== item.nom);
-          sauvegarderPanier(panierActuel);
-          afficherPanier();
-          mettreAJourCompteur();
+        cartItemsContainer.querySelectorAll('.cart-remove-btn').forEach(btn => {
+          btn.onclick = () => {
+            const id = btn.getAttribute('data-id');
+            if (cartData[id]) {
+              delete cartData[id];
+              saveCart();
+              renderCart();
+            }
+          };
         });
+      }
 
-        listePanier.appendChild(div);
+      btnAjout.addEventListener('click', () => {
+        const id = 'prod1';
+        const name = "Station de Recharge 70W - 5 en 1";
+        const price = 35.50;
+        const img = "https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png";
+
+        if (cartData[id]) {
+          cartData[id].qty++;
+        } else {
+          cartData[id] = { name, price, qty: 1, img };
+        }
+        saveCart();
+        renderCart();
+        cart.style.display = 'flex';
       });
 
-      totalPanier.textContent = 'Total : ' + calculerTotal(panier).toFixed(2).replace('.', ',') + ' €';
-    }
-
-    btnAjout.addEventListener('click', () => {
-      let panier = chargerPanier();
-      const produit = {
-        nom: "Station de Recharge 70W - 5 en 1",
-        prix: 35.50,
-        quantite: 1,
-        image: "https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png"
+      cartButton.onclick = () => {
+        if (cart.style.display === 'flex') {
+          cart.style.display = 'none';
+        } else {
+          renderCart();
+          cart.style.display = 'flex';
+        }
       };
-      const index = panier.findIndex(p => p.nom === produit.nom);
-      if(index > -1) {
-        panier[index].quantite++;
-      } else {
-        panier.push(produit);
-      }
-      sauvegarderPanier(panier);
-      afficherMessage();
-      mettreAJourCompteur();
-      afficherPanier();
-      fenetrePanier.style.display = 'flex';
-    });
 
-    btnPanier.addEventListener('click', () => {
-      if(fenetrePanier.style.display === 'flex') {
-        fenetrePanier.style.display = 'none';
-      } else {
-        afficherPanier();
-        fenetrePanier.style.display = 'flex';
-      }
-    });
+      cartClose.onclick = () => {
+        cart.style.display = 'none';
+      };
 
-    fermerPanier.addEventListener('click', () => {
-      fenetrePanier.style.display = 'none';
-    });
-
-    // Init compteur panier au chargement
-    mettreAJourCompteur();
+      updateCartCount();
+      renderCart();
+    })();
   </script>
 </body>
 </html>
