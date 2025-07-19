@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Station de Recharge 70W - The Everything</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1c1c1c;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .carousel {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto 2rem;
+    }
+    .carousel img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      background-color: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0 10px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      user-select: none;
+      border-radius: 4px;
+    }
+    .carousel .prev {
+      left: 5px;
+    }
+    .carousel .next {
+      right: 5px;
+    }
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+    p.price {
+      font-size: 1.5rem;
+      color: #00c897;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+    p.description {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-top: 1rem;
+    }
+    a.btn-back {
+      display: inline-block;
+      margin-top: 2rem;
+      background-color: #00c897;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    button.pay-button {
+      margin-top: 1.5rem;
+      background-color: #00c897;
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Everything</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="#about">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="carousel">
+      <button class="prev">&#10094;</button>
+      <img id="carousel-image" src="https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png" alt="Station de Recharge 70W" />
+      <button class="next">&#10095;</button>
+    </div>
+    <h1>Station de Recharge 70W - 5 en 1</h1>
+    <p class="price">35,50 €</p>
+    <p class="description">
+      Station de recharge rapide 70W pour plusieurs appareils avec 4 ports USB et un chargeur sans fil 10W. 
+      Compatible avec iPhone, iPad, tablettes, Kindle et autres appareils USB-C. Compacte, efficace et élégante, parfaite pour le bureau ou la maison.
+    </p>
+    <button class="pay-button" onclick="alert('Paiement en cours de mise en place')">Payer maintenant</button>
+    <br />
+    <a href="index.html" class="btn-back">Retour à la boutique</a>
+  </main>
+
+  <script>
+    (function(){
+      const images = [
+        "https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png",
+        "https://i.postimg.cc/rw9pjFJM/Screenshot-2025-07-19-at-15-14-20-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png",
+        "https://i.postimg.cc/yYVt91kF/Screenshot-2025-07-19-at-15-14-35-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png"
+      ];
+      let index = 0;
+      const imgElement = document.getElementById('carousel-image');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+
+      function showImage(i) {
+        index = i;
+        if(index < 0) index = images.length - 1;
+        if(index >= images.length) index = 0;
+        imgElement.src = images[index];
+      }
+
+      prevBtn.addEventListener('click', () => {
+        showImage(index - 1);
+      });
+      nextBtn.addEventListener('click', () => {
+        showImage(index + 1);
+      });
+
+      showImage(index);
+    })();
+  </script>
+</body>
+</html>
