@@ -370,7 +370,7 @@
 
   <script>
     (() => {
-      // Gestion du panier dans localStorage
+      // Sélecteurs DOM
       const cartButton = document.getElementById('cart-button');
       const cart = document.getElementById('cart');
       const cartClose = document.getElementById('cart-close');
@@ -380,8 +380,10 @@
       const cartCountElem = document.getElementById('cart-count');
       const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
+      // Récupérer panier depuis localStorage ou init vide
       let cartData = JSON.parse(localStorage.getItem('cartData')) || {};
 
+      // Met à jour le compteur panier dans le header
       function updateCartCount() {
         const count = Object.values(cartData).reduce((acc, item) => acc + item.qty, 0);
         if (count > 0) {
@@ -392,11 +394,13 @@
         }
       }
 
+      // Sauvegarde panier dans localStorage + mise à jour compteur
       function saveCart() {
         localStorage.setItem('cartData', JSON.stringify(cartData));
         updateCartCount();
       }
 
+      // Affiche contenu panier dans la popup
       function renderCart() {
         cartItemsContainer.innerHTML = '';
         let total = 0;
@@ -406,7 +410,6 @@
 
           const itemDiv = document.createElement('div');
           itemDiv.className = 'cart-item';
-
           itemDiv.innerHTML = `
             <img src="${item.img}" alt="${item.name}" />
             <div class="cart-item-details">
@@ -419,23 +422,22 @@
         }
         cartTotalElem.textContent = 'Total: ' + total.toFixed(2).replace('.', ',') + ' €';
 
-        // Ajout écouteurs pour les boutons supprimer
-        const removeButtons = cartItemsContainer.querySelectorAll('.cart-remove-btn');
-        removeButtons.forEach(btn => {
-          btn.addEventListener('click', () => {
+        // Écouteur sur chaque bouton supprimer
+        cartItemsContainer.querySelectorAll('.cart-remove-btn').forEach(btn => {
+          btn.onclick = () => {
             const id = btn.getAttribute('data-id');
             if (cartData[id]) {
               delete cartData[id];
               saveCart();
               renderCart();
             }
-          });
+          };
         });
       }
 
-      // Ajout au panier
+      // Ajoute un produit au panier au clic sur bouton
       addToCartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.onclick = (e) => {
           e.preventDefault();
           const productElem = e.target.closest('.product');
           const id = productElem.dataset.id;
@@ -444,31 +446,36 @@
           const img = productElem.dataset.img;
 
           if (cartData[id]) {
-            cartData[id].qty += 1;
+            cartData[id].qty++;
           } else {
             cartData[id] = { name, price, qty: 1, img };
           }
           saveCart();
           renderCart();
+          cart.style.display = 'flex'; // Ouvre le panier à l'ajout
+        };
+      });
+
+      // Ouvre / ferme la popup panier
+      cartButton.onclick = () => {
+        if (cart.style.display === 'flex') {
+          cart.style.display = 'none';
+        } else {
+          renderCart();
           cart.style.display = 'flex';
-        });
-      });
+        }
+      };
 
-      // Ouvrir / fermer panier
-      cartButton.addEventListener('click', () => {
-        cart.style.display = cart.style.display === 'flex' ? 'none' : 'flex';
-      });
-
-      cartClose.addEventListener('click', () => {
+      cartClose.onclick = () => {
         cart.style.display = 'none';
-      });
+      };
 
-      // Checkout - juste une alerte pour l'instant
-      checkoutBtn.addEventListener('click', () => {
+      // Fonction de checkout (simple alerte pour l'instant)
+      checkoutBtn.onclick = () => {
         alert('Fonction de paiement à implémenter.');
-      });
+      };
 
-      // Gestion cookies
+      // Gestion de la bannière cookies (inchangée)
       const banner = document.getElementById('cookie-banner');
       const acceptBtn = document.getElementById('accept-cookies');
       const rejectBtn = document.getElementById('reject-cookies');
@@ -488,10 +495,9 @@
         banner.style.display = 'none';
       };
 
-      // Initial load
+      // Initialisation à l’ouverture de la page
       updateCartCount();
       renderCart();
-
     })();
   </script>
 </body>
