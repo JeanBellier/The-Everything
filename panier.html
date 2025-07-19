@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Votre Panier - The Everything</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #1c1c1c;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      border-bottom: 1px solid #ccc;
+      padding: 1rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    img {
+      width: 60px;
+      border-radius: 8px;
+    }
+    .total {
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    .btn-checkout {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: #00c897;
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .empty {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Everything</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Votre panier</h1>
+    <div id="contenu-panier"></div>
+  </main>
+
+  <script>
+    function afficherPanier() {
+      const panier = JSON.parse(localStorage.getItem('panier')) || [];
+      const container = document.getElementById('contenu-panier');
+
+      if (panier.length === 0) {
+        container.innerHTML = '<p class="empty">Votre panier est vide.</p>';
+        return;
+      }
+
+      let html = '<table><thead><tr><th>Produit</th><th>Quantité</th><th>Prix</th></tr></thead><tbody>';
+      let total = 0;
+
+      panier.forEach(item => {
+        const sousTotal = item.prix * item.quantite;
+        total += sousTotal;
+        html += `<tr>
+          <td><img src="${item.image}" alt="${item.nom}" /> ${item.nom}</td>
+          <td>${item.quantite}</td>
+          <td>${sousTotal.toFixed(2)} €</td>
+        </tr>`;
+      });
+
+      html += '</tbody></table>';
+      html += `<p class="total">Total : ${total.toFixed(2)} €</p>`;
+      html += '<button class="btn-checkout" onclick="finaliserCommande()">Finaliser la commande</button>';
+      container.innerHTML = html;
+    }
+
+    function finaliserCommande() {
+      alert("Merci pour votre commande ! Vous recevrez un e-mail de confirmation.");
+      localStorage.removeItem('panier');
+      window.location.href = "index.html";
+    }
+
+    afficherPanier();
+  </script>
+</body>
+</html>
