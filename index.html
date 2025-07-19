@@ -54,7 +54,7 @@
     }
     .products {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 2rem;
       padding: 2rem;
     }
@@ -86,8 +86,6 @@
       margin: 0 0.5rem;
       text-decoration: none;
     }
-
-    /* Cookie banner */
     #cookie-banner {
       position: fixed;
       bottom: 0;
@@ -141,33 +139,24 @@
 
   <section class="products" id="produits">
     <div class="product">
-      <img
-        src="https://i.postimg.cc/cLrrcWzw/Screenshot-2025-07-12-at-13-24-06-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png"
-        alt="Mini Ventilateur Humidifiant"
-      />
-      <h3><a href="ventilateur.html">Mini Ventilateur Humidifiant 3 Vitesses</a></h3>
+      <img src="https://via.placeholder.com/300x200?text=Produit+1" alt="Produit 1">
+      <h3><a href="produit1.html">Nom du Produit 1</a></h3>
       <p>9,99 €</p>
     </div>
-
     <div class="product">
-      <img
-        src="https://i.postimg.cc/NjwkwWMz/Screenshot-2025-07-13-at-13-03-21-Coque-de-t-l-phone-universelle-tanche-IP68-sac-pour-i-Phone-16-15.png"
-        alt="Coque étanche universelle IP68"
-      />
-      <h3><a href="coqueprotectionsousleau.html">Coque Étanche Universelle IP68</a></h3>
-      <p>3,99 €</p>
+      <img src="https://via.placeholder.com/300x200?text=Produit+2" alt="Produit 2">
+      <h3><a href="produit2.html">Nom du Produit 2</a></h3>
+      <p>14,90 €</p>
     </div>
-
     <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Produit+3" alt="Produit à venir" />
-      <h3>Produit à venir</h3>
-      <p>Bientôt disponible</p>
+      <img src="https://via.placeholder.com/300x200?text=Produit+3" alt="Produit 3">
+      <h3><a href="produit3.html">Nom du Produit 3</a></h3>
+      <p>19,90 €</p>
     </div>
-
     <div class="product">
-      <img src="https://via.placeholder.com/200x200.png?text=Produit+4" alt="Produit à venir" />
-      <h3>Produit à venir</h3>
-      <p>Bientôt disponible</p>
+      <img src="https://via.placeholder.com/300x200?text=Produit+4" alt="Produit 4">
+      <h3><a href="produit4.html">Nom du Produit 4</a></h3>
+      <p>4,99 €</p>
     </div>
   </section>
 
@@ -175,8 +164,7 @@
     <h2>À propos</h2>
     <p>
       "The Everything" est votre boutique de gadgets pour améliorer votre quotidien avec style et
-      efficacité. Notre enseigne est sérieuse, avec un support client disponible et réactif pour vous aider à
-      tout moment.
+      efficacité. Nous sélectionnons des produits originaux, utiles et livrables rapidement depuis l'Europe ou les États-Unis.
     </p>
   </section>
 
@@ -190,14 +178,14 @@
   <footer>
     <p>&copy; 2025 The Everything - Tous droits réservés</p>
     <p>
-      <a href="mention.html">Mention légale</a> |
+      <a href="mention.html">Mentions légales</a> |
       <a href="cgv.html">CGV</a> |
       <a href="cookies.html">Politique de confidentialité</a>
     </p>
   </footer>
 
   <!-- Bannière Cookies -->
-  <div id="cookie-banner" style="display:none;">
+  <div id="cookie-banner">
     <span>Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous ?</span>
     <button id="accept-cookies">Accepter</button>
     <button id="reject-cookies">Refuser</button>
