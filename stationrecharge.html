@@ -1,4 +1,3 @@
-<!-- fichier : station70w.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -36,6 +35,7 @@
       padding: 2rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       text-align: center;
+      position: relative;
     }
     .carousel {
       position: relative;
@@ -100,6 +100,26 @@
       font-size: 1.1rem;
       cursor: pointer;
     }
+    /* Message ajout panier */
+    #message-ajout {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00c897;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10000;
+    }
+    #message-ajout.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body>
@@ -124,10 +144,12 @@
       Station de recharge rapide 70W pour plusieurs appareils avec 4 ports USB et un chargeur sans fil 10W. 
       Compatible avec iPhone, iPad, tablettes, Kindle et autres appareils USB-C. Compacte, efficace et élégante, parfaite pour le bureau ou la maison.
     </p>
-    <button class="cart-button" onclick="ajouterAuPanier()">Ajouter au panier</button>
+    <button class="cart-button" id="btn-ajout">Ajouter au panier</button>
     <br />
     <a href="index.html" class="btn-back">Retour à la boutique</a>
   </main>
+
+  <div id="message-ajout">L'article a été ajouté au panier</div>
 
   <script>
     // Carousel
@@ -159,8 +181,17 @@
       showImage(index);
     })();
 
-    // Panier
-    function ajouterAuPanier() {
+    // Message ajout panier
+    function afficherMessage() {
+      const msg = document.getElementById('message-ajout');
+      msg.classList.add('visible');
+      setTimeout(() => {
+        msg.classList.remove('visible');
+      }, 2000);
+    }
+
+    // Ajout panier et message
+    document.getElementById('btn-ajout').addEventListener('click', () => {
       const produit = {
         nom: "Station de Recharge 70W - 5 en 1",
         prix: 35.50,
@@ -175,8 +206,12 @@
         panier.push(produit);
       }
       localStorage.setItem('panier', JSON.stringify(panier));
-      window.location.href = "panier.html";
-    }
+
+      // Met un flag pour dire qu'on a ajouté depuis fiche produit
+      localStorage.setItem('ajoutDepuisFicheProduit', 'true');
+
+      afficherMessage();
+    });
   </script>
 </body>
 </html>
