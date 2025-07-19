@@ -20,12 +20,36 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
     }
     nav a {
       color: white;
       text-decoration: none;
       margin-left: 1.5rem;
       font-weight: 500;
+    }
+    /* Panier bouton dans header */
+    #btn-panier {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      position: relative;
+    }
+    #compteur-panier {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #00c897;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 50%;
+      padding: 2px 6px;
+      user-select: none;
+      display: none;
+      pointer-events: none;
     }
     main {
       max-width: 800px;
@@ -120,6 +144,99 @@
       opacity: 1;
       pointer-events: auto;
     }
+    /* Fenêtre panier */
+    #fenetre-panier {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 320px;
+      max-height: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+      padding: 1rem;
+      box-sizing: border-box;
+      display: none;
+      flex-direction: column;
+      z-index: 10000;
+    }
+    #fenetre-panier header {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #fermer-panier {
+      background: transparent;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      font-weight: 700;
+      color: #555;
+    }
+    #fermer-panier:hover {
+      color: #00c897;
+    }
+    #liste-panier {
+      flex-grow: 1;
+      overflow-y: auto;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 0.5rem 0;
+      margin-bottom: 1rem;
+    }
+    .item-panier {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7rem;
+    }
+    .item-info {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      max-width: 220px;
+    }
+    .item-info img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .item-nom {
+      font-weight: 600;
+      font-size: 0.9rem;
+      word-wrap: break-word;
+    }
+    .item-quantite {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .btn-supprimer {
+      background: transparent;
+      border: none;
+      color: #cc3333;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    #total-panier {
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: right;
+      margin-bottom: 0.5rem;
+    }
+    /* Scroll barre pour liste panier */
+    #liste-panier::-webkit-scrollbar {
+      width: 6px;
+    }
+    #liste-panier::-webkit-scrollbar-thumb {
+      background-color: #00c897;
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
@@ -130,6 +247,10 @@
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button id="btn-panier" aria-label="Afficher le panier">
+      🛒
+      <span id="compteur-panier">0</span>
+    </button>
   </header>
 
   <main>
@@ -150,6 +271,17 @@
   </main>
 
   <div id="message-ajout">L'article a été ajouté au panier</div>
+
+  <div id="fenetre-panier" role="dialog" aria-modal="true" aria-labelledby="titre-panier">
+    <header>
+      <span id="titre-panier">Panier</span>
+      <button id="fermer-panier" aria-label="Fermer le panier">&times;</button>
+    </header>
+    <div id="liste-panier">
+      <!-- articles ajoutés -->
+    </div>
+    <div id="total-panier">Total : 0 €</div>
+  </div>
 
   <script>
     // Carousel
@@ -181,37 +313,122 @@
       showImage(index);
     })();
 
-    // Message ajout panier
+    // Gestion panier
+    const btnAjout = document.getElementById('btn-ajout');
+    const messageAjout = document.getElementById('message-ajout');
+    const btnPanier = document.getElementById('btn-panier');
+    const compteurPanier = document.getElementById('compteur-panier');
+    const fenetrePanier = document.getElementById('fenetre-panier');
+    const fermerPanier = document.getElementById('fermer-panier');
+    const listePanier = document.getElementById('liste-panier');
+    const totalPanier = document.getElementById('total-panier');
+
     function afficherMessage() {
-      const msg = document.getElementById('message-ajout');
-      msg.classList.add('visible');
+      messageAjout.classList.add('visible');
       setTimeout(() => {
-        msg.classList.remove('visible');
+        messageAjout.classList.remove('visible');
       }, 2000);
     }
 
-    // Ajout panier et message
-    document.getElementById('btn-ajout').addEventListener('click', () => {
+    function chargerPanier() {
+      return JSON.parse(localStorage.getItem('panier')) || [];
+    }
+
+    function sauvegarderPanier(panier) {
+      localStorage.setItem('panier', JSON.stringify(panier));
+    }
+
+    function calculerTotal(panier) {
+      return panier.reduce((acc, item) => acc + item.prix * item.quantite, 0);
+    }
+
+    function mettreAJourCompteur() {
+      const panier = chargerPanier();
+      const totalQty = panier.reduce((acc, item) => acc + item.quantite, 0);
+      if(totalQty > 0) {
+        compteurPanier.style.display = 'inline-block';
+        compteurPanier.textContent = totalQty;
+      } else {
+        compteurPanier.style.display = 'none';
+      }
+    }
+
+    function afficherPanier() {
+      const panier = chargerPanier();
+      listePanier.innerHTML = '';
+
+      if(panier.length === 0) {
+        listePanier.innerHTML = '<p>Votre panier est vide.</p>';
+        totalPanier.textContent = 'Total : 0 €';
+        return;
+      }
+
+      panier.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'item-panier';
+
+        div.innerHTML = `
+          <div class="item-info">
+            <img src="${item.image}" alt="${item.nom}">
+            <div>
+              <div class="item-nom">${item.nom}</div>
+              <div class="item-quantite">Quantité : ${item.quantite}</div>
+            </div>
+          </div>
+          <button class="btn-supprimer" aria-label="Supprimer ${item.nom}">×</button>
+        `;
+
+        // Suppression article au clic sur bouton
+        div.querySelector('.btn-supprimer').addEventListener('click', () => {
+          let panierActuel = chargerPanier();
+          panierActuel = panierActuel.filter(p => p.nom !== item.nom);
+          sauvegarderPanier(panierActuel);
+          afficherPanier();
+          mettreAJourCompteur();
+        });
+
+        listePanier.appendChild(div);
+      });
+
+      totalPanier.textContent = 'Total : ' + calculerTotal(panier).toFixed(2).replace('.', ',') + ' €';
+    }
+
+    btnAjout.addEventListener('click', () => {
+      let panier = chargerPanier();
       const produit = {
         nom: "Station de Recharge 70W - 5 en 1",
         prix: 35.50,
         quantite: 1,
         image: "https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png"
       };
-      let panier = JSON.parse(localStorage.getItem('panier')) || [];
-      let index = panier.findIndex(p => p.nom === produit.nom);
+      const index = panier.findIndex(p => p.nom === produit.nom);
       if(index > -1) {
-        panier[index].quantite += 1;
+        panier[index].quantite++;
       } else {
         panier.push(produit);
       }
-      localStorage.setItem('panier', JSON.stringify(panier));
-
-      // Met un flag pour dire qu'on a ajouté depuis fiche produit
-      localStorage.setItem('ajoutDepuisFicheProduit', 'true');
-
+      sauvegarderPanier(panier);
       afficherMessage();
+      mettreAJourCompteur();
+      afficherPanier();
+      fenetrePanier.style.display = 'flex';
     });
+
+    btnPanier.addEventListener('click', () => {
+      if(fenetrePanier.style.display === 'flex') {
+        fenetrePanier.style.display = 'none';
+      } else {
+        afficherPanier();
+        fenetrePanier.style.display = 'flex';
+      }
+    });
+
+    fermerPanier.addEventListener('click', () => {
+      fenetrePanier.style.display = 'none';
+    });
+
+    // Init compteur panier au chargement
+    mettreAJourCompteur();
   </script>
 </body>
 </html>
