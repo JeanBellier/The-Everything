@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paiement - The Everything</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+      padding: 2rem;
+      gap: 2rem;
+      box-sizing: border-box;
+    }
+    .left, .right {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+      flex: 1;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .left {
+      max-width: 60%;
+    }
+    .right {
+      max-width: 35%;
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #00c897;
+    }
+    .product-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+    .product-item img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .product-details {
+      flex-grow: 1;
+    }
+    .product-details strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .product-details span {
+      color: #555;
+    }
+    .product-price {
+      font-weight: 700;
+      color: #00c897;
+      font-size: 1.1rem;
+      white-space: nowrap;
+    }
+    .total {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: right;
+      margin-top: 2rem;
+      border-top: 2px solid #00c897;
+      padding-top: 1rem;
+    }
+    /* Styles moyens de paiement */
+    .payment-method {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .payment-method:hover {
+      border-color: #00c897;
+      background-color: #e0f7f1;
+    }
+    .payment-method input {
+      transform: scale(1.3);
+      cursor: pointer;
+    }
+    .payment-method label {
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button#confirm-payment {
+      background-color: #00c897;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 2rem;
+      width: 100%;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    button#confirm-payment:hover {
+      background-color: #019c75;
+    }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <h2>Votre panier</h2>
+    <div id="checkout-products">
+      <!-- Produits ajoutés ici -->
+    </div>
+    <div class="total" id="checkout-total">Total: 0 €</div>
+  </div>
+  <div class="right">
+    <h2>Moyens de paiement</h2>
+    <form id="payment-form">
+      <div class="payment-method">
+        <input type="radio" id="card" name="payment" value="Carte bancaire" checked />
+        <label for="card">Carte bancaire</label>
+      </div>
+      <div class="payment-method">
+        <input type="radio" id="paypal" name="payment" value="PayPal" />
+        <label for="paypal">PayPal</label>
+      </div>
+      <div class="payment-method">
+        <input type="radio" id="bank" name="payment" value="Virement bancaire" />
+        <label for="bank">Virement bancaire</label>
+      </div>
+      <button type="submit" id="confirm-payment">Confirmer le paiement</button>
+    </form>
+  </div>
+
+  <script>
+    // Récupérer les données du panier dans localStorage
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || {};
+    const checkoutProducts = document.getElementById('checkout-products');
+    const checkoutTotal = document.getElementById('checkout-total');
+
+    let total = 0;
+
+    for (const id in cartData) {
+      const item = cartData[id];
+      const itemTotal = item.price * item.qty;
+      total += itemTotal;
+
+      const prodDiv = document.createElement('div');
+      prodDiv.className = 'product-item';
+      prodDiv.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" />
+        <div class="product-details">
+          <strong>${item.name}</strong>
+          <span>Quantité : ${item.qty}</span>
+        </div>
+        <div class="product-price">${itemTotal.toFixed(2).replace('.', ',')} €</div>
+      `;
+      checkoutProducts.appendChild(prodDiv);
+    }
+
+    checkoutTotal.textContent = 'Total : ' + total.toFixed(2).replace('.', ',') + ' €';
+
+    // Gestion formulaire paiement
+    const paymentForm = document.getElementById('payment-form');
+    paymentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(paymentForm);
+      const paymentMethod = formData.get('payment');
+      alert(`Merci pour votre commande !\nMode de paiement choisi : ${paymentMethod}\nMontant total : ${total.toFixed(2).replace('.', ',')} €`);
+      // Ici tu peux ajouter ta logique réelle de paiement, envoi vers serveur, etc.
+      localStorage.removeItem('cartData'); // vider panier après paiement
+      window.location.href = 'index.html'; // retour à l'accueil
+    });
+  </script>
+</body>
+</html>
