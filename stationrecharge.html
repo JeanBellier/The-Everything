@@ -1,3 +1,4 @@
+<!-- fichier : station70w.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -89,7 +90,7 @@
       text-decoration: none;
       font-weight: 600;
     }
-    button.pay-button {
+    button.cart-button {
       margin-top: 1.5rem;
       background-color: #00c897;
       color: white;
@@ -123,12 +124,13 @@
       Station de recharge rapide 70W pour plusieurs appareils avec 4 ports USB et un chargeur sans fil 10W. 
       Compatible avec iPhone, iPad, tablettes, Kindle et autres appareils USB-C. Compacte, efficace et élégante, parfaite pour le bureau ou la maison.
     </p>
-    <button class="pay-button" onclick="alert('Paiement en cours de mise en place')">Payer maintenant</button>
+    <button class="cart-button" onclick="ajouterAuPanier()">Ajouter au panier</button>
     <br />
     <a href="index.html" class="btn-back">Retour à la boutique</a>
   </main>
 
   <script>
+    // Carousel
     (function(){
       const images = [
         "https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png",
@@ -156,6 +158,25 @@
 
       showImage(index);
     })();
+
+    // Panier
+    function ajouterAuPanier() {
+      const produit = {
+        nom: "Station de Recharge 70W - 5 en 1",
+        prix: 35.50,
+        quantite: 1,
+        image: "https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png"
+      };
+      let panier = JSON.parse(localStorage.getItem('panier')) || [];
+      let index = panier.findIndex(p => p.nom === produit.nom);
+      if(index > -1) {
+        panier[index].quantite += 1;
+      } else {
+        panier.push(produit);
+      }
+      localStorage.setItem('panier', JSON.stringify(panier));
+      window.location.href = "panier.html";
+    }
   </script>
 </body>
 </html>
