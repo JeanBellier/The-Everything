@@ -309,6 +309,16 @@
       <button class="add-to-cart">Ajouter au panier</button>
     </div>
 
+    <!-- Produit purificateur avec lien sur image et titre -->
+    <div class="product" data-id="prod4" data-name="Purificateur d’Air USB Maison & Voiture" data-price="13.99" data-img="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png">
+      <a href="purificateurusb.html" style="text-decoration:none; color:inherit;">
+        <img src="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png" alt="Purificateur d’Air USB Maison & Voiture" />
+        <h3>Purificateur d’Air USB Maison & Voiture</h3>
+      </a>
+      <p class="price">13,99 €</p>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+
     <div class="product" data-id="prod2" data-name="Mini Ventilateur Humidifiant 3 Vitesses" data-price="9.99" data-img="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png">
       <img src="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant 3 Vitesses">
       <h3><a href="produit2.html">Mini Ventilateur Humidifiant 3 Vitesses</a></h3>
@@ -462,43 +472,4 @@
           cart.style.display = 'none';
         } else {
           renderCart();
-          cart.style.display = 'flex';
-        }
-      };
-
-      cartClose.onclick = () => {
-        cart.style.display = 'none';
-      };
-
-      // Fonction de checkout (simple alerte pour l'instant)
-      checkoutBtn.onclick = () => {
-        alert('Fonction de paiement à implémenter.');
-      };
-
-      // Gestion de la bannière cookies (inchangée)
-      const banner = document.getElementById('cookie-banner');
-      const acceptBtn = document.getElementById('accept-cookies');
-      const rejectBtn = document.getElementById('reject-cookies');
-      const decision = localStorage.getItem('cookiesAccepted');
-
-      if (decision !== 'yes' && decision !== 'no') {
-        banner.style.display = 'flex';
-      }
-
-      acceptBtn.onclick = () => {
-        localStorage.setItem('cookiesAccepted', 'yes');
-        banner.style.display = 'none';
-      };
-
-      rejectBtn.onclick = () => {
-        localStorage.setItem('cookiesAccepted', 'no');
-        banner.style.display = 'none';
-      };
-
-      // Initialisation à l’ouverture de la page
-      updateCartCount();
-      renderCart();
-    })();
-  </script>
-</body>
-</html>
+          cart.style
