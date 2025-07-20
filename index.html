@@ -33,6 +33,7 @@
       font-weight: 500;
       cursor: pointer;
     }
+    /* Bouton panier dans le header */
     #cart-button {
       background: transparent;
       border: none;
@@ -54,6 +55,7 @@
       user-select: none;
       display: none;
     }
+
     .hero {
       text-align: center;
       padding: 4rem 2rem;
@@ -136,6 +138,7 @@
       margin: 0 0.5rem;
       text-decoration: none;
     }
+
     /* PANIER */
     #cart {
       position: fixed;
@@ -148,17 +151,19 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.2);
       padding: 1rem;
       box-sizing: border-box;
-      display: none;
+      display: none; /* affiché au clic */
       flex-direction: column;
       z-index: 10000;
     }
+
     #cart-header {
       position: relative;
-      padding-right: 40px;
+      padding-right: 40px; /* espace pour la croix */
       font-weight: bold;
       font-size: 1.2rem;
       margin-bottom: 1rem;
     }
+
     #cart-close {
       position: absolute;
       top: 0;
@@ -171,16 +176,20 @@
       color: #666;
       transition: color 0.3s ease;
     }
-    #cart-close:hover { color: #00c897; }
+    #cart-close:hover {
+      color: #00c897;
+    }
+
     #cart-items {
       flex-grow: 1;
       overflow-y: auto;
-      max-height: 300px;
+      max-height: 300px; /* hauteur max pour scroll */
       border-top: 1px solid #ddd;
       border-bottom: 1px solid #ddd;
       padding: 0.5rem 0;
       margin-bottom: 1rem;
     }
+
     .cart-item {
       display: flex;
       align-items: center;
@@ -233,8 +242,11 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    #checkout-button:hover { background-color: #019c75; }
-    /* Cookies */
+    #checkout-button:hover {
+      background-color: #019c75;
+    }
+
+    /* Bannière Cookies */
     #cookie-banner {
       position: fixed;
       bottom: 0;
@@ -258,8 +270,14 @@
       cursor: pointer;
       font-weight: 600;
     }
-    #accept-cookies { background: #00c897; color: white; }
-    #reject-cookies { background: #555; color: white; }
+    #accept-cookies {
+      background: #00c897;
+      color: white;
+    }
+    #reject-cookies {
+      background: #555;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -270,84 +288,93 @@
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="cart-button" aria-label="Voir le panier">🛒 <span id="cart-count">0</span></button>
+    <button id="cart-button" title="Voir le panier" aria-label="Voir le panier">
+      🛒 <span id="cart-count">0</span>
+    </button>
   </header>
 
   <section class="hero">
     <h1>Trouvez tout ce qu’il vous faut</h1>
     <p>Des gadgets uniques et pratiques, livrés chez vous.</p>
-    <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior:'smooth'});">Voir les gadgets</button>
+    <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'});">
+      Voir les gadgets
+    </button>
   </section>
 
   <section class="products" id="produits">
-    <!-- Station de Recharge 70W -->
-    <div class="product" data-id="prod1" data-name="Station de Recharge 70W - 5 en 1" data-price="35.50" data-img="https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png">
-      <img src="https://i.postimg.cc/C1XXkkn5/Screenshot-2025-07-19-at-15-13-42-70-W-Charging-Station-For-Multiple-Devices-5-In-1-Fast-Charging-Doc.png" alt="Station de Recharge 70W - 5 en 1">
-      <h3><a href="stationrecharge.html">Station de Recharge 70W - 5 en 1</a></h3>
-      <p class="price">35,50 €</p>
-      <button class="add-to-cart">Ajouter au panier</button>
+    <!-- Ventilateur USB à la place du 5 en 1 -->
+    <div class="product" data-id="prod2" data-name="Mini Ventilateur Humidifiant 3 Vitesses" data-price="9.99" data-img="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png">
+      <img src="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant 3 Vitesses">
+      <h3><a href="produit2.html">Mini Ventilateur Humidifiant 3 Vitesses</a></h3>
+      <p class="price">9,99 €</p>
+      <button class="add-to-cart">Ajouter au panier</button>
     </div>
 
-    <!-- Purificateur d’Air USB -->
-    <div class="product" data-id="prod4" data-name="Purificateur d’Air USB Maison & Voiture" data-price="13.99" data-img="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png">
-      <img src="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png" alt="Purificateur d’Air USB Maison & Voiture">
-      <h3><a href="purificateurusb.html">Purificateur d’Air USB Maison & Voiture</a></h3>
-      <p class="price">13,99 €</p>
-      <button class="add-to-cart">Ajouter au panier</button>
+    <!-- Purificateur d'air USB -->
+    <div class="product" data-id="prod4" data-name="Purificateur d’Air USB Maison & Voiture" data-price="13.99" data-img="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png">
+      <a href="purificateurusb.html" style="text-decoration:none; color:inherit;">
+        <img src="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png" alt="Purificateur d’Air USB Maison & Voiture" />
+        <h3>Purificateur d’Air USB Maison & Voiture</h3>
+      </a>
+      <p class="price">13,99 €</p>
+      <button class="add-to-cart">Ajouter au panier</button>
     </div>
 
-    <!-- Mini Ventilateur Humidifiant 3 Vitesses -->
-    <div class="product" data-id="prod2" data-name="Mini Ventilateur Humidifiant 3 Vitesses" data-price="9.99" data-img="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png">
-      <img src="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant 3 Vitesses">
-      <h3><a href="produit2.html">Mini Ventilateur Humidifiant 3 Vitesses</a></h3>
-      <p class="price">9,99 €</p>
-      <button class="add-to-cart">Ajouter au panier</button>
-    </div>
-
-    <!-- Lampe de Lecture LED Portable -->
-    <div class="product" data-id="prod3" data-name="Lampe de Lecture LED Portable" data-price="15.90" data-img="https://via.placeholder.com/300x200?text=Lampe+LED">
-      <img src="https://via.placeholder.com/300x200?text=Lampe+LED" alt="Lampe de Lecture LED Portable">
-      <h3><a href="produit3.html">Lampe de Lecture LED Portable</a></h3>
-      <p class="price">15,90 €</p>
-      <button class="add-to-cart">Ajouter au panier</button>
+    <div class="product" data-id="prod3" data-name="Lampe de Lecture LED Portable" data-price="15.90" data-img="https://via.placeholder.com/300x200?text=Lampe+LED">
+      <img src="https://via.placeholder.com/300x200?text=Lampe+LED" alt="Lampe de Lecture LED Portable">
+      <h3><a href="produit3.html">Lampe de Lecture LED Portable</a></h3>
+      <p class="price">15,90 €</p>
+      <button class="add-to-cart">Ajouter au panier</button>
     </div>
   </section>
 
   <section id="about">
     <h2>À propos</h2>
-    <p>"The Everything" est votre boutique de gadgets pour améliorer votre quotidien avec style et efficacité. Nous sélectionnons des produits originaux, utiles et livrables rapidement depuis l'Europe ou les États-Unis.</p>
+    <p>
+      "The Everything" est votre boutique de gadgets pour améliorer votre quotidien avec style et
+      efficacité. Nous sélectionnons des produits originaux, utiles et livrables rapidement depuis l'Europe ou les États-Unis.
+    </p>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Pour toute question : <a href="mailto:jean.bellier28@gmail.com" style="color:#00c897;">jean.bellier28@gmail.com</a></p>
+    <p>
+      Pour toute question : <a href="mailto:jean.bellier28@gmail.com" style="color: #00c897;">jean.bellier28@gmail.com</a>
+    </p>
   </section>
 
   <!-- PANIER -->
-  <div id="cart" role="dialog" aria-modal="true">
+  <div id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-header">
     <div id="cart-header">
       Panier
       <button id="cart-close" aria-label="Fermer le panier">&times;</button>
     </div>
-    <div id="cart-items"></div>
-    <div id="cart-total">Total : 0 €</div>
+    <div id="cart-items">
+      <!-- Produits ajoutés -->
+    </div>
+    <div id="cart-total">Total: 0 €</div>
     <button id="checkout-button">Passer à la caisse</button>
   </div>
 
   <footer>
-    <p>&copy; 2025 The Everything – Tous droits réservés</p>
-    <p><a href="mention.html">Mentions légales</a> | <a href="cgv.html">CGV</a> | <a href="cookies.html">Politique de confidentialité</a></p>
+    <p>&copy; 2025 The Everything - Tous droits réservés</p>
+    <p>
+      <a href="mention.html">Mentions légales</a> |
+      <a href="cgv.html">CGV</a> |
+      <a href="cookies.html">Politique de confidentialité</a>
+    </p>
   </footer>
 
   <!-- Bannière Cookies -->
   <div id="cookie-banner">
-    <span>Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous ?</span>
+    <span>Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous ?</span>
     <button id="accept-cookies">Accepter</button>
     <button id="reject-cookies">Refuser</button>
   </div>
 
   <script>
     (() => {
+      // Sélecteurs DOM
       const cartButton = document.getElementById('cart-button');
       const cart = document.getElementById('cart');
       const cartClose = document.getElementById('cart-close');
@@ -357,10 +384,12 @@
       const cartCountElem = document.getElementById('cart-count');
       const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
+      // Récupérer panier depuis localStorage ou init vide
       let cartData = JSON.parse(localStorage.getItem('cartData')) || {};
 
+      // Met à jour le compteur panier dans le header
       function updateCartCount() {
-        const count = Object.values(cartData).reduce((sum, i) => sum + i.qty, 0);
+        const count = Object.values(cartData).reduce((acc, item) => acc + item.qty, 0);
         if (count > 0) {
           cartCountElem.style.display = 'inline';
           cartCountElem.textContent = count;
@@ -369,72 +398,61 @@
         }
       }
 
+      // Sauvegarde panier dans localStorage + mise à jour compteur
       function saveCart() {
         localStorage.setItem('cartData', JSON.stringify(cartData));
         updateCartCount();
       }
 
+      // Affiche contenu panier dans la popup
       function renderCart() {
         cartItemsContainer.innerHTML = '';
         let total = 0;
         for (const id in cartData) {
           const item = cartData[id];
           total += item.price * item.qty;
-          const div = document.createElement('div');
-          div.className = 'cart-item';
-          div.innerHTML = `
+
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'cart-item';
+          itemDiv.innerHTML = `
             <img src="${item.img}" alt="${item.name}" />
             <div class="cart-item-details">
               <strong>${item.name}</strong>
-              <span class="cart-item-qty">Quantité : ${item.qty}</span>
+              <span class="cart-item-qty">Quantité: ${item.qty}</span>
             </div>
             <button class="cart-remove-btn" data-id="${id}" aria-label="Supprimer ${item.name}">&times;</button>
           `;
-          cartItemsContainer.appendChild(div);
+          cartItemsContainer.appendChild(itemDiv);
         }
-        cartTotalElem.textContent = 'Total : ' + total.toFixed(2).replace('.', ',') + ' €';
+        cartTotalElem.textContent = 'Total: ' + total.toFixed(2).replace('.', ',') + ' €';
+
+        // Écouteur sur chaque bouton supprimer
         cartItemsContainer.querySelectorAll('.cart-remove-btn').forEach(btn => {
           btn.onclick = () => {
-            delete cartData[btn.dataset.id];
-            saveCart();
-            renderCart();
+            const id = btn.getAttribute('data-id');
+            if (cartData[id]) {
+              delete cartData[id];
+              saveCart();
+              renderCart();
+            }
           };
         });
       }
 
-      addToCartButtons.forEach(btn => {
-        btn.onclick = e => {
+      // Ajoute un produit au panier au clic sur bouton
+      addToCartButtons.forEach(button => {
+        button.onclick = (e) => {
           e.preventDefault();
-          const p = e.target.closest('.product');
-          const id = p.dataset.id;
-          const name = p.dataset.name;
-          const price = parseFloat(p.dataset.price);
-          const img = p.dataset.img;
-          if (cartData[id]) cartData[id].qty++;
-          else cartData[id] = { name, price, qty: 1, img };
+          const productElem = e.target.closest('.product');
+          const id = productElem.dataset.id;
+          const name = productElem.dataset.name;
+          const price = parseFloat(productElem.dataset.price);
+          const img = productElem.dataset.img;
+
+          if (cartData[id]) {
+            cartData[id].qty++;
+          } else {
+            cartData[id] = { name, price, qty: 1, img };
+          }
           saveCart();
-          renderCart();
-          cart.style.display = 'flex';
-        };
-      });
-
-      cartButton.onclick = () => {
-        if (cart.style.display === 'flex') cart.style.display = 'none';
-        else { renderCart(); cart.style.display = 'flex'; }
-      };
-      cartClose.onclick = () => { cart.style.display = 'none'; };
-      checkoutBtn.onclick = () => { alert('Fonction de paiement à implémenter.'); };
-
-      const banner = document.getElementById('cookie-banner');
-      const accept = document.getElementById('accept-cookies');
-      const reject = document.getElementById('reject-cookies');
-      const decision = localStorage.getItem('cookiesAccepted');
-      if (decision !== 'yes' && decision !== 'no') banner.style.display = 'flex';
-      accept.onclick = () => { localStorage.setItem('cookiesAccepted','yes'); banner.style.display='none'; };
-      reject.onclick = () => { localStorage.setItem('cookiesAccepted','no'); banner.style.display='none'; };
-
-      updateCartCount();
-    })();
-  </script>
-</body>
-</html>
+          render
