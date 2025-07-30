@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Everything</title>
+  <title>Purificateur d’Air USB - The Everything</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -11,9 +11,7 @@
       font-family: 'Inter', sans-serif;
       background-color: #f9f9f9;
       color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      padding: 2rem;
     }
     header {
       background-color: #1c1c1c;
@@ -22,30 +20,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: relative;
     }
     nav a {
       color: white;
       text-decoration: none;
       margin-left: 1.5rem;
       font-weight: 500;
-      cursor: pointer;
     }
-    /* Bouton panier */
     #cart-button {
       background: transparent;
       border: none;
-      cursor: pointer;
       color: white;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
+      cursor: pointer;
       position: relative;
     }
     #cart-count {
       position: absolute;
-      top: -6px;
-      right: -10px;
+      top: -8px;
+      right: -8px;
       background: #00c897;
       color: white;
       font-size: 0.75rem;
@@ -54,99 +48,90 @@
       padding: 2px 6px;
       user-select: none;
       display: none;
+      pointer-events: none;
     }
-    .hero {
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       text-align: center;
-      padding: 4rem 2rem;
-      background-color: #e0f7f1;
+      position: relative;
     }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .carousel {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto 2rem;
     }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+    .carousel img {
+      width: 100%;
+      border-radius: 12px;
     }
-    .btn-primary {
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      background-color: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0 10px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      user-select: none;
+      border-radius: 4px;
+    }
+    .carousel .prev {
+      left: 5px;
+    }
+    .carousel .next {
+      right: 5px;
+    }
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+    p.price {
+      font-size: 1.5rem;
+      color: #00c897;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+    p.description {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-top: 1rem;
+    }
+    a.btn-back {
+      display: inline-block;
+      margin-top: 2rem;
       background-color: #00c897;
       color: white;
       padding: 0.8rem 1.5rem;
-      border: none;
       border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      padding: 2rem;
-      flex-grow: 1;
-    }
-    .product {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1rem;
-      text-align: center;
-    }
-    .product img {
-      width: 100%;
-      max-height: 200px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    .product h3 a {
       text-decoration: none;
-      color: inherit;
-    }
-    .product p.price {
-      margin: 0.5rem 0;
-      font-weight: bold;
-      color: #00c897;
-      font-size: 1.2rem;
-    }
-    .product button.add-to-cart {
-      background-color: #00c897;
-      border: none;
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
       font-weight: 600;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
     }
-    .product button.add-to-cart:hover {
-      background-color: #019c75;
-    }
-    section#about, section#contact {
-      padding: 2rem;
-      text-align: center;
-    }
-    footer {
-      background: #1c1c1c;
+    button#btn-ajout {
+      margin-top: 1.5rem;
+      background-color: #00c897;
       color: white;
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
     }
-    footer a {
-      color: #00c897;
-      margin: 0 0.5rem;
-      text-decoration: none;
-    }
-    /* PANIER */
     #cart {
       position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 350px;
+      top: 60px;
+      right: 20px;
+      width: 320px;
       max-height: 400px;
       background: white;
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
       padding: 1rem;
       box-sizing: border-box;
       display: none;
@@ -154,23 +139,20 @@
       z-index: 10000;
     }
     #cart-header {
-      position: relative;
-      padding-right: 40px;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 1.2rem;
       margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     #cart-close {
-      position: absolute;
-      top: 0;
-      right: 0;
-      cursor: pointer;
-      font-size: 1.4rem;
       background: transparent;
       border: none;
-      font-weight: bold;
-      color: #666;
-      transition: color 0.3s ease;
+      font-size: 1.3rem;
+      cursor: pointer;
+      font-weight: 700;
+      color: #555;
     }
     #cart-close:hover {
       color: #00c897;
@@ -178,17 +160,17 @@
     #cart-items {
       flex-grow: 1;
       overflow-y: auto;
-      max-height: 300px;
       border-top: 1px solid #ddd;
       border-bottom: 1px solid #ddd;
       padding: 0.5rem 0;
       margin-bottom: 1rem;
+      max-height: 250px;
     }
     .cart-item {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 0.7rem;
-      gap: 0.8rem;
     }
     .cart-item img {
       width: 50px;
@@ -196,10 +178,12 @@
       object-fit: contain;
       border-radius: 6px;
       border: 1px solid #ccc;
+      margin-right: 0.8rem;
     }
     .cart-item-details {
       flex-grow: 1;
       font-size: 0.9rem;
+      text-align: left;
     }
     .cart-item-details strong {
       display: block;
@@ -213,63 +197,16 @@
     .cart-remove-btn {
       background: transparent;
       border: none;
-      font-size: 1.1rem;
       color: #cc3333;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
-      font-weight: bold;
     }
     #cart-total {
-      font-weight: bold;
+      font-weight: 700;
       font-size: 1.1rem;
       text-align: right;
       margin-bottom: 0.5rem;
-    }
-    #checkout-button {
-      background-color: #00c897;
-      border: none;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      width: 100%;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    #checkout-button:hover {
-      background-color: #019c75;
-    }
-    /* Bannière Cookies */
-    #cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #222;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-      z-index: 9999;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    #cookie-banner button {
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    #accept-cookies {
-      background: #00c897;
-      color: white;
-    }
-    #reject-cookies {
-      background: #555;
-      color: white;
     }
   </style>
 </head>
@@ -281,184 +218,140 @@
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="cart-button" aria-label="Voir le panier">
+    <button id="cart-button" aria-label="Afficher le panier">
       🛒 <span id="cart-count">0</span>
     </button>
   </header>
 
-  <section class="hero">
-    <h1>Trouvez tout ce qu’il vous faut</h1>
-    <p>Des gadgets uniques et pratiques, livrés chez vous.</p>
-    <button class="btn-primary" onclick="document.getElementById('produits').scrollIntoView({behavior: 'smooth'});">
-      Voir les gadgets
-    </button>
-  </section>
-
-  <section class="products" id="produits">
-    <!-- Ventilateur USB à 9,99 € -->
-    <div class="product" data-id="prod2" data-name="Mini Ventilateur Humidifiant 3 Vitesses" data-price="9.99" data-img="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png">
-      <img src="https://i.postimg.cc/jdPThs0n/Screenshot-2025-07-12-at-13-25-17-Ventilateur-de-climatisation-portable-mini-refroidisseur-d-air-par.png" alt="Mini Ventilateur Humidifiant 3 Vitesses">
-      <h3><a href="produit2.html">Mini Ventilateur Humidifiant 3 Vitesses</a></h3>
-      <p class="price">9,99 €</p>
-      <button class="add-to-cart">Ajouter au panier</button>
+  <main>
+    <div class="carousel">
+      <button class="prev">&#10094;</button>
+      <img id="carousel-image" src="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png" alt="Purificateur d'air USB" />
+      <button class="next">&#10095;</button>
     </div>
-
-    <!-- Purificateur d’Air USB -->
-    <div class="product" data-id="prod4" data-name="Purificateur d’Air USB Maison & Voiture" data-price="13.99" data-img="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png">
-      <a href="purificateurusb.html" style="text-decoration:none; color:inherit;">
-        <img src="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png" alt="Purificateur d’Air USB Maison & Voiture">
-        <h3>Purificateur d’Air USB Maison & Voiture</h3>
-      </a>
-      <p class="price">13,99 €</p>
-      <button class="add-to-cart">Ajouter au panier</button>
-    </div>
-
-    <!-- Lampe de Lecture LED Portable -->
-    <div class="product" data-id="prod3" data-name="Lampe de Lecture LED Portable" data-price="15.90" data-img="https://via.placeholder.com/300x200?text=Lampe+LED">
-      <img src="https://via.placeholder.com/300x200?text=Lampe+LED" alt="Lampe de Lecture LED Portable">
-      <h3><a href="produit3.html">Lampe de Lecture LED Portable</a></h3>
-      <p class="price">15,90 €</p>
-      <button class="add-to-cart">Ajouter au panier</button>
-    </div>
-  </section>
-
-  <section id="about">
-    <h2>À propos</h2>
-    <p>
-      "The Everything" est votre boutique de gadgets pour améliorer votre quotidien avec style et efficacité. Nous sélectionnons des produits originaux, utiles et livrables rapidement depuis l'Europe ou les États-Unis.
+    <h1>Purificateur d’Air USB Maison & Voiture</h1>
+    <p class="price">9,99 €</p>
+    <p class="description">
+      Mini purificateur d’air à projection pour voiture et maison. Léger, silencieux et alimenté par USB, il améliore la qualité de l’air grâce à une diffusion douce et moderne. Idéal pour les petits espaces.
     </p>
-  </section>
+    <button id="btn-ajout">Ajouter au panier</button>
+    <br />
+    <a href="index.html" class="btn-back">Retour à la boutique</a>
+  </main>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      Pour toute question : <a href="mailto:jean.bellier28@gmail.com" style="color:#00c897;">jean.bellier28@gmail.com</a>
-    </p>
-  </section>
-
-  <!-- PANIER -->
   <div id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-header">
-    <div id="cart-header">
+    <header id="cart-header">
       Panier
       <button id="cart-close" aria-label="Fermer le panier">&times;</button>
-    </div>
+    </header>
     <div id="cart-items"></div>
-    <div id="cart-total">Total : 0 €</div>
-    <button id="checkout-button">Passer à la caisse</button>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 The Everything – Tous droits réservés</p>
-    <p>
-      <a href="mention.html">Mentions légales</a> | 
-      <a href="cgv.html">CGV</a> | 
-      <a href="cookies.html">Politique de confidentialité</a>
-    </p>
-  </footer>
-
-  <!-- Bannière Cookies -->
-  <div id="cookie-banner">
-    <span>Nous utilisons des cookies pour améliorer votre expérience. Acceptez-vous ?</span>
-    <button id="accept-cookies">Accepter</button>
-    <button id="reject-cookies">Refuser</button>
+    <div id="cart-total">Total: 0 €</div>
   </div>
 
   <script>
-    (() => {
+    (function(){
+      const images = [
+        "https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png",
+        "https://i.postimg.cc/Gm4Zbfxz/Screenshot-2025-07-20-at-16-08-42-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png",
+        "https://i.postimg.cc/BQYr93HX/Screenshot-2025-07-20-at-16-08-01-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png"
+      ];
+      let index = 0;
+      const imgElement = document.getElementById('carousel-image');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+
+      function showImage(i) {
+        index = i;
+        if(index < 0) index = images.length - 1;
+        if(index >= images.length) index = 0;
+        imgElement.src = images[index];
+      }
+
+      prevBtn.addEventListener('click', () => showImage(index - 1));
+      nextBtn.addEventListener('click', () => showImage(index + 1));
+      showImage(index);
+
+      const btnAjout = document.getElementById('btn-ajout');
       const cartButton = document.getElementById('cart-button');
       const cart = document.getElementById('cart');
       const cartClose = document.getElementById('cart-close');
       const cartItemsContainer = document.getElementById('cart-items');
       const cartTotalElem = document.getElementById('cart-total');
-      const checkoutBtn = document.getElementById('checkout-button');
       const cartCountElem = document.getElementById('cart-count');
-      const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-      // Charger panier depuis localStorage
       let cartData = JSON.parse(localStorage.getItem('cartData')) || {};
 
-      // Mettre à jour compteur
       function updateCartCount() {
-        const count = Object.values(cartData).reduce((sum, i) => sum + i.qty, 0);
-        if (count > 0) {
-          cartCountElem.style.display = 'inline';
-          cartCountElem.textContent = count;
-        } else {
-          cartCountElem.style.display = 'none';
-        }
+        const count = Object.values(cartData).reduce((acc, item) => acc + item.qty, 0);
+        cartCountElem.style.display = count > 0 ? 'inline' : 'none';
+        cartCountElem.textContent = count;
       }
 
-      // Sauvegarder panier
       function saveCart() {
         localStorage.setItem('cartData', JSON.stringify(cartData));
         updateCartCount();
       }
 
-      // Afficher panier
       function renderCart() {
         cartItemsContainer.innerHTML = '';
         let total = 0;
         for (const id in cartData) {
           const item = cartData[id];
           total += item.price * item.qty;
-          const div = document.createElement('div');
-          div.className = 'cart-item';
-          div.innerHTML = `
+
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'cart-item';
+          itemDiv.innerHTML = `
             <img src="${item.img}" alt="${item.name}" />
             <div class="cart-item-details">
               <strong>${item.name}</strong>
-              <span class="cart-item-qty">Quantité : ${item.qty}</span>
+              <span class="cart-item-qty">Quantité: ${item.qty}</span>
             </div>
             <button class="cart-remove-btn" data-id="${id}" aria-label="Supprimer ${item.name}">&times;</button>
           `;
-          cartItemsContainer.appendChild(div);
+          cartItemsContainer.appendChild(itemDiv);
         }
-        cartTotalElem.textContent = 'Total : ' + total.toFixed(2).replace('.', ',') + ' €';
+        cartTotalElem.textContent = 'Total: ' + total.toFixed(2).replace('.', ',') + ' €';
+
         cartItemsContainer.querySelectorAll('.cart-remove-btn').forEach(btn => {
           btn.onclick = () => {
-            delete cartData[btn.dataset.id];
-            saveCart();
-            renderCart();
+            const id = btn.getAttribute('data-id');
+            if (cartData[id]) {
+              delete cartData[id];
+              saveCart();
+              renderCart();
+            }
           };
         });
       }
 
-      // Ajouter au panier
-      addToCartButtons.forEach(btn => {
-        btn.onclick = e => {
-          e.preventDefault();
-          const p = e.target.closest('.product');
-          const id = p.dataset.id;
-          const name = p.dataset.name;
-          const price = parseFloat(p.dataset.price);
-          const img = p.dataset.img;
-          if (cartData[id]) cartData[id].qty++;
-          else cartData[id] = { name, price, qty: 1, img };
-          saveCart();
-          renderCart();
-          cart.style.display = 'flex';
-        };
+      btnAjout.addEventListener('click', () => {
+        const id = 'prod2';
+        const name = "Purificateur d’Air USB Maison & Voiture";
+        const price = 9.99;
+        const img = "https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png";
+
+        if (cartData[id]) {
+          cartData[id].qty++;
+        } else {
+          cartData[id] = { name, price, qty: 1, img };
+        }
+        saveCart();
+        renderCart();
+        cart.style.display = 'flex';
       });
 
-      // Ouvrir/fermer panier
       cartButton.onclick = () => {
-        if (cart.style.display === 'flex') cart.style.display = 'none';
-        else { renderCart(); cart.style.display = 'flex'; }
+        cart.style.display = (cart.style.display === 'flex') ? 'none' : 'flex';
+        renderCart();
       };
-      cartClose.onclick = () => { cart.style.display = 'none'; };
-      checkoutBtn.onclick = () => { alert('Fonction de paiement à implémenter.'); };
 
-      // Cookies
-      const banner = document.getElementById('cookie-banner');
-      const accept = document.getElementById('accept-cookies');
-      const reject = document.getElementById('reject-cookies');
-      const decision = localStorage.getItem('cookiesAccepted');
-      if (decision !== 'yes' && decision !== 'no') banner.style.display = 'flex';
-      accept.onclick = () => { localStorage.setItem('cookiesAccepted','yes'); banner.style.display='none'; };
-      reject.onclick = () => { localStorage.setItem('cookiesAccepted','no'); banner.style.display='none'; };
+      cartClose.onclick = () => {
+        cart.style.display = 'none';
+      };
 
-      // Initialisation
       updateCartCount();
+      renderCart();
     })();
   </script>
 </body>
