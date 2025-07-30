@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Purificateur d’Air USB - The Everything</title>
+  <title>The Everything - Boutique</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -51,74 +51,47 @@
       pointer-events: none;
     }
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 2rem auto;
       background: white;
       border-radius: 12px;
       padding: 2rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-      position: relative;
     }
-    .carousel {
-      position: relative;
-      max-width: 400px;
-      margin: 0 auto 2rem;
+    .product {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
     }
-    .carousel img {
-      width: 100%;
+    .product img {
+      width: 250px;
       border-radius: 12px;
+      object-fit: contain;
+      border: 1px solid #ccc;
     }
-    .carousel button {
-      position: absolute;
-      top: 50%;
-      background-color: rgba(0,0,0,0.3);
-      border: none;
-      color: white;
-      font-size: 2rem;
-      padding: 0 10px;
-      cursor: pointer;
-      transform: translateY(-50%);
-      user-select: none;
-      border-radius: 4px;
+    .product-info {
+      flex-grow: 1;
     }
-    .carousel .prev {
-      left: 5px;
+    .product-info h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
     }
-    .carousel .next {
-      right: 5px;
-    }
-    h1 {
-      margin-top: 1rem;
-      font-size: 2rem;
-    }
-    p.price {
-      font-size: 1.5rem;
+    .product-info p.price {
+      font-size: 1.4rem;
       color: #00c897;
-      margin: 1rem 0;
       font-weight: bold;
+      margin: 0.5rem 0;
     }
-    p.description {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      margin-top: 1rem;
+    .product-info p.description {
+      font-size: 1rem;
+      line-height: 1.4;
+      margin: 1rem 0;
     }
-    a.btn-back {
-      display: inline-block;
-      margin-top: 2rem;
+    button.add-to-cart {
       background-color: #00c897;
       color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    button#btn-ajout {
-      margin-top: 1.5rem;
-      background-color: #00c897;
-      color: white;
-      padding: 0.8rem 2rem;
       border: none;
+      padding: 0.8rem 2rem;
       border-radius: 8px;
       font-size: 1.1rem;
       cursor: pointer;
@@ -215,7 +188,7 @@
     <h1>The Everything</h1>
     <nav>
       <a href="index.html">Accueil</a>
-      <a href="#about">À propos</a>
+      <a href="purificateurusb.html">Purificateur d'air</a>
       <a href="#contact">Contact</a>
     </nav>
     <button id="cart-button" aria-label="Afficher le panier">
@@ -224,19 +197,17 @@
   </header>
 
   <main>
-    <div class="carousel">
-      <button class="prev">&#10094;</button>
-      <img id="carousel-image" src="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png" alt="Purificateur d'air USB" />
-      <button class="next">&#10095;</button>
+    <div class="product">
+      <img src="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png" alt="Purificateur d’air USB" />
+      <div class="product-info">
+        <h2>Purificateur d’Air USB Maison & Voiture</h2>
+        <p class="price">9,99 €</p>
+        <p class="description">
+          Mini purificateur d’air à projection pour voiture et maison. Léger, silencieux et alimenté par USB, il améliore la qualité de l’air grâce à une diffusion douce et moderne. Idéal pour les petits espaces.
+        </p>
+        <button class="add-to-cart" data-id="prod2" data-name="Purificateur d’Air USB Maison & Voiture" data-price="9.99" data-img="https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png">Ajouter au panier</button>
+      </div>
     </div>
-    <h1>Purificateur d’Air USB Maison & Voiture</h1>
-    <p class="price">9,99 €</p>
-    <p class="description">
-      Mini purificateur d’air à projection pour voiture et maison. Léger, silencieux et alimenté par USB, il améliore la qualité de l’air grâce à une diffusion douce et moderne. Idéal pour les petits espaces.
-    </p>
-    <button id="btn-ajout">Ajouter au panier</button>
-    <br />
-    <a href="index.html" class="btn-back">Retour à la boutique</a>
   </main>
 
   <div id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-header">
@@ -250,34 +221,13 @@
 
   <script>
     (function(){
-      const images = [
-        "https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png",
-        "https://i.postimg.cc/Gm4Zbfxz/Screenshot-2025-07-20-at-16-08-42-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png",
-        "https://i.postimg.cc/BQYr93HX/Screenshot-2025-07-20-at-16-08-01-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png"
-      ];
-      let index = 0;
-      const imgElement = document.getElementById('carousel-image');
-      const prevBtn = document.querySelector('.prev');
-      const nextBtn = document.querySelector('.next');
-
-      function showImage(i) {
-        index = i;
-        if(index < 0) index = images.length - 1;
-        if(index >= images.length) index = 0;
-        imgElement.src = images[index];
-      }
-
-      prevBtn.addEventListener('click', () => showImage(index - 1));
-      nextBtn.addEventListener('click', () => showImage(index + 1));
-      showImage(index);
-
-      const btnAjout = document.getElementById('btn-ajout');
       const cartButton = document.getElementById('cart-button');
       const cart = document.getElementById('cart');
       const cartClose = document.getElementById('cart-close');
       const cartItemsContainer = document.getElementById('cart-items');
       const cartTotalElem = document.getElementById('cart-total');
       const cartCountElem = document.getElementById('cart-count');
+      const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
       let cartData = JSON.parse(localStorage.getItem('cartData')) || {};
 
@@ -325,20 +275,22 @@
         });
       }
 
-      btnAjout.addEventListener('click', () => {
-        const id = 'prod2';
-        const name = "Purificateur d’Air USB Maison & Voiture";
-        const price = 9.99;
-        const img = "https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png";
+      addToCartButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const name = btn.getAttribute('data-name');
+          const price = parseFloat(btn.getAttribute('data-price'));
+          const img = btn.getAttribute('data-img');
 
-        if (cartData[id]) {
-          cartData[id].qty++;
-        } else {
-          cartData[id] = { name, price, qty: 1, img };
-        }
-        saveCart();
-        renderCart();
-        cart.style.display = 'flex';
+          if (cartData[id]) {
+            cartData[id].qty++;
+          } else {
+            cartData[id] = { name, price, qty: 1, img };
+          }
+          saveCart();
+          renderCart();
+          cart.style.display = 'flex';
+        });
       });
 
       cartButton.onclick = () => {
