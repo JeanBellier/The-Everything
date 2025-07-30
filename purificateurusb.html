@@ -326,7 +326,7 @@
       }
 
       btnAjout.addEventListener('click', () => {
-        const id = 'prod2';
+        const id = 'prod4'; // même id que dans index.html
         const name = "Purificateur d’Air USB Maison & Voiture";
         const price = 9.99;
         const img = "https://i.postimg.cc/8CHd9pfY/Screenshot-2025-07-20-at-16-16-23-Magic-Shadow-USB-Air-Humidifier-For-Home-With-Projection-Night-Lig.png";
@@ -342,8 +342,12 @@
       });
 
       cartButton.onclick = () => {
-        cart.style.display = (cart.style.display === 'flex') ? 'none' : 'flex';
-        renderCart();
+        if (cart.style.display === 'flex') {
+          cart.style.display = 'none';
+        } else {
+          renderCart();
+          cart.style.display = 'flex';
+        }
       };
 
       cartClose.onclick = () => {
